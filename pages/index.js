@@ -25,7 +25,12 @@ export default function Home() {
           justifyContent: "center",
           alignItems: "center",
         }}>
-          <h1>Summit Ticketing</h1>
+          <div style={{
+            textAlign: "center",
+          }}>
+            <h1>The Summit</h1>
+            <h2>Ticketing & Activities</h2>
+          </div>
         </div>
       </div>
 
@@ -35,6 +40,7 @@ export default function Home() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        gap: "40px"
       }}>
         <Link href="/login" style={{
           width: "100%",
@@ -50,6 +56,22 @@ export default function Home() {
           textDecoration: "none",
         }}>
           <h2>Get Your Ticket</h2>
+        </Link>
+
+        <Link href="/login" style={{
+          width: "100%",
+          padding: "20px",
+          border: "4px solid var(--tan)",
+          background: "var(--red)",
+          color: "var(--tan)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontFamily: "unset",
+          cursor: "pointer",
+          textDecoration: "none",
+        }}>
+          <h2>Sign In</h2>
         </Link>
       </div>
     </main>
