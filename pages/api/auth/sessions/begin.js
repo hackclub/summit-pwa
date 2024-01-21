@@ -1,5 +1,5 @@
 import { findAttendee } from "@/lib/airtable";
-import sendgrid from "@/lib/sendgrid";
+import sendgrid, { loginCodeEmail }  from "@/lib/email";
 import { create, generateLoginCode } from "@/lib/sessions";
 import { setCookie } from "cookies-next";
 
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     from: "team@hackclub.com",
     replyTo: "summit@hackclub.com",
     subject: "Your login code for Hack Club Summit",
-    text: `Hello! Here's your login code for The Summit: ${loginCode}.`,
+    ...loginCodeEmail(loginCode)
   });
 
   return res.json({ registered: true, codeSent: true });
