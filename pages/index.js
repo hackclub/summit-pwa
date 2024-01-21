@@ -58,7 +58,7 @@ export default function Home() {
               flexDirection: "row",
               width: "100%"
             }}>
-              <style dangerouslySetInnerHTML={{__html:`
+              <style dangerouslySetInnerHTML={{__html: `
                 .inputFocus:focus {
                   outline: none;
                   background: white!important;
@@ -73,7 +73,6 @@ export default function Home() {
                   color: var(--red);
                   opacity: 0.7;
                 }
-                
               `}} />
               <input style={{
                 padding: "8px",
