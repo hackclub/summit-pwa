@@ -13,6 +13,7 @@ const space = Space_Mono({ weight: "400", subsets: ["latin"] });
 
 export default function LoginPage() {
   const [loginCode, setLoginCode] = useState("");
+  const [loading, setLoading] = useState("");
   const router = useRouter();
   return (
     <Login pageName="Login">
@@ -96,12 +97,14 @@ export default function LoginPage() {
             })}
             placeholder="Login Code"
             value={loginCode}
+            disabled={loading}
             onChange={(e) => setLoginCode(e.target.value.toUpperCase().substring(0, 6).split("").filter(e => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').includes(e)).join(""))}
           />
           <a
             href="/login"
-            {...$({ textDecoration: "none" })}
+            {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}
             onClick={async (e) => {
+              if(loading) return;
               e.preventDefault();
               const { authorized } = await api.auth.sessions.authorize.post({
                 loginCode
