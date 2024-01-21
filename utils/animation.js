@@ -1,14 +1,11 @@
 import React, { CSSProperties, createElement } from "react";
 
 const themeUtils = {
-    
   createComponent(element, styles) {
     // @ts-ignore
     const { classes } = this;
 
-    return ({
-      children
-    }) => (
+    return ({ children }) => (
       <>
         {createElement(
           element,
@@ -23,14 +20,12 @@ const themeUtils = {
   }
 };
 
-
-
 function fn(styles = {}) {
   // @ts-ignore
   let { classes } = this;
   classes = [...classes];
 
-  const animationName = (Object.keys(styles))
+  const animationName = Object.keys(styles)
     .filter((key) => key.startsWith("animate$"))
     .map((key) => key.replace("animate$", ""))[0];
   const animation = styles[`animate$${animationName}`];
@@ -73,8 +68,7 @@ function fn(styles = {}) {
 function generateProxy(classes = []) {
   return new Proxy(fn.bind({ classes }), {
     get(_, prop) {
-      if (themeUtils[prop])
-        return themeUtils[prop];
+      if (themeUtils[prop]) return themeUtils[prop];
 
       return generateProxy([...classes, prop]);
     }
@@ -278,13 +272,13 @@ const css = `
    padding-top: calc(100% - 1px)!important;
 }
 
-`
+`;
 
-export function AnimationProvider ({ children }) {
+export function AnimationProvider({ children }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
       {children}
     </>
-  )
+  );
 }

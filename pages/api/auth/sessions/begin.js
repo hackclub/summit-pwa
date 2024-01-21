@@ -1,6 +1,26 @@
-export default async function handler (req, res) {
-    const { email } = req.body;
+import { findAttendee } from "@/lib/airtable";
+import sendgrid from "@/lib/sendgrid";
+import { create, generateLoginCode } from "@/lib/sessions";
+import { setCookie } from "cookies-next";
 
-    const registered = true;
-    if (!registered) return res.json({ registered: false });
+const oneWeek = 60 * 60 * 24 * 7;
+
+export default async function handler(req, res) {
+  const attendee = await findAttendee(req.body.email);
+  if (!attendee) return res.json({ registered: false });
+
+  const { sessionId } = await create(attendee.fields.email);
+  setCookie("session", sessionId, { req, res, maxAge: oneWeek });
+
+  const { loginCode } = await generateLoginCode(sessionId);
+
+  await sendgrid.send({
+    to: attendee.fields.email,
+    from: "team@hackclub.com",
+    replyTo: "summit@hackclub.com",
+    subject: "Your login code for Hack Club Summit",
+    text: `Hello! Here's your login code for The Summit: ${loginCode}.`,
+  });
+
+  return res.json({ registered: true, codeSent: true });
 }

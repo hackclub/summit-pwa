@@ -26,10 +26,46 @@ p {
 }
 
 :root {
-  --red: #B42E1E;
-  --tan: #FFEC96;
+  --red: #b42e1e;
+  --tan: #ffec96;
 }
 
-div.debug, .debug div {
+div.debug,
+.debug div {
   border: 1px solid black;
+}
+
+button {
+  padding: 1rem;
+  min-width: 10rem;
+  box-shadow: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  background: var(--tan);
+  box-sizing: border-box;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.15));
+  cursor: pointer;
+  transition: ease-in-out 0.25s;
+  letter-spacing: 1.1;
+  font-family: inherit;
+}
+
+button.red {
+  background: var(--red);
+  color: var(--tan);
+  border: 2px solid var(--red);
+}
+
+button.outlined {
+  border: 2px solid var(--red);
+}
+
+button:hover {
+  transform: translateY(-5px);
+}
+
+button:active {
+  transform: scale(0.9);
+  filter: none;
 }

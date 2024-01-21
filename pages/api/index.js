@@ -1,3 +1,3 @@
-export default async function handler (req, res) {
-    res.send('Summit Ticketing API');
+export default async function handler(req, res) {
+  res.send("Summit Ticketing API");
 }
