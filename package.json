@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/kv": "^1.0.1",
     "@walletpass/pass-js": "^6.9.1",
     "jimp": "^0.22.10",
     "next": "14.0.4",

@@ -15,10 +15,10 @@ The primary identifier behind tickets for The Summit are ticket numbers. These t
 function checksum (number) {
    const digits = (number + '').split('');
 
-   return digits.reduce((amount, digit) => +digit + amount) % 10;
+   return digits.reduce((amount, digit) => +digit + +amount) % 10;
 }
 
-async function hash (message, salt = "", length = 3) {
+async function hash (message, salt = "", length = 2) {
    const encodedMessage = new TextEncoder().encode(salt + message);
 
    const buffer = await crypto.subtle.digest('SHA-256', encodedMessage);
@@ -31,9 +31,9 @@ async function hash (message, salt = "", length = 3) {
 }
 
 function randomDigits (length) {
-   const digits = "";
+   let digits = "";
 
-   for (_ of new Array(length)) {
+   for (foo of new Array(length)) {
       digits += Math.floor(Math.random() * 10);
    }
 
@@ -50,5 +50,6 @@ async function ticketNumber (name, email) {
 
    return ticketNumber;
 }
-```
+
+ticketNumber("Fiona Hackworth", "fiona@hackclub.com").then(console.log)
 ```

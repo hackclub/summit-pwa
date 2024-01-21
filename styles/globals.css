@@ -19,7 +19,17 @@ h2 {
   margin: 0;
 }
 
+p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 0;
+}
+
 :root {
   --red: #B42E1E;
   --tan: #FFEC96;
+}
+
+div.debug, .debug div {
+  border: 1px solid black;
 }
