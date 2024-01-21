@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   let sessionId = getCookie("session", { req, res });
   await loginWithCode(sessionId, loginCode);
   let session = await currentSession(sessionId);
-  console.log(session ? { authorized: true, ...session } : { authorized: false })
   return res.json(
     session ? { authorized: true, ...session } : { authorized: false }
   );

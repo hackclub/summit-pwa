@@ -13,7 +13,7 @@ const space = Space_Mono({ weight: "400", subsets: ["latin"] });
 
 export default function LoginPage() {
   const [loginCode, setLoginCode] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
     <Login pageName="Login">
@@ -27,8 +27,23 @@ export default function LoginPage() {
           }
         })}
       >
-        We sent you a login code, enter it below:
+        Great!
       </h1>
+      <p
+        {...$({
+          marginBottom: "24px",
+          animate$fadeIn: {
+            duration: "0.5s",
+            delay: "0.5s",
+            args: ["fromBottom"]
+          }
+        })}
+      >
+        We sent a login code to your email. It expires in 15 minutes. Didn't get it? <Link href="/" {...$({
+          textDecoration: "underline",
+          color: "var(--red)"
+        })}>Try again.</Link>
+      </p>
       <div
         {...$({
           width: "min(100%, 400px)",
@@ -106,10 +121,16 @@ export default function LoginPage() {
             onClick={async (e) => {
               if(loading) return;
               e.preventDefault();
+              setLoading(true);
               const { authorized } = await api.auth.sessions.authorize.post({
                 loginCode
               });
-              if (!authorized) return alert("INVALID LOGIN CODE!");
+
+              if (!authorized){
+                setLoading(false);
+                setLoginCode("");
+                return alert("🧙‍♀️ What sort of witchcraft is this? That's an invalid login code!");
+              }
               if (authorized) router.push("/dashboard");
             }}
           >
@@ -121,7 +142,7 @@ export default function LoginPage() {
                 color: "var(--tan)"
               })}
             >
-              →
+              {loading ? "⌛" : "→"}
             </h2>
           </a>
         </div>

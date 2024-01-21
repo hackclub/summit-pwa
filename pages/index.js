@@ -11,7 +11,7 @@ const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
 export default function Home() {
   const [email, setEmail] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter()
 
   useEffect(() => {
@@ -133,13 +133,16 @@ export default function Home() {
                 })}
                 placeholder="Email"
                 value={email}
+                disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <a
                 href="/login"
-                {...$({ textDecoration: "none" })}
+                {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}
                 onClick={async (e) => {
+                  if(loading) return;
                   e.preventDefault();
+                  setLoading(true);
                   const { registered } = await api.auth.sessions.begin.post({
                     email
                   });
@@ -155,7 +158,7 @@ export default function Home() {
                     color: "var(--tan)"
                   })}
                 >
-                  →
+                  {loading ? "⌛" : "→"}
                 </h2>
               </a>
             </div>
