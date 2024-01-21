@@ -6,6 +6,8 @@ import Login from "@/components/layouts/Login";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { currentUser } from "@/lib/sessions";
+import { getCookie } from "cookies-next";
 
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
@@ -139,7 +141,10 @@ export default function LoginPage() {
                 fontFamily: "system-ui",
                 padding: "8px",
                 textDecoration: "none",
-                color: "var(--tan)"
+                color: "var(--tan)",
+                fontSize: loading ? "1.8rem" : "2rem",
+                display: 'flex',
+                alignItems: 'center'
               })}
             >
               {loading ? "⌛" : "→"}
@@ -149,4 +154,20 @@ export default function LoginPage() {
       </div>
     </Login>
   );
+}
+
+export const getServerSideProps = async ({req, res}) => {
+  const sessionId = getCookie('session', { req, res });
+  const user = await currentUser(sessionId);
+  if (user) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: {},
+  }
 }
