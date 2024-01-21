@@ -1,20 +1,29 @@
 import $ from "@/utils/animation";
+import Head from "next/head";
 import { Akaya_Kanadaka, UnifrakturCook } from "next/font/google";
 import Link from "next/link";
+import api from "@/lib/api";
+import { useState } from "react";
+
 
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+
   return (
-    <main className={akaya.className} style={{
+    <main {...$[akaya.className]({
       width: "100vw",
       height: "100vh",
       padding: "0px",
       margin: "0px",
       display: "flex",
       flexDirection: "row",
-    }}>
+    })}>
+      <Head>
+        <title>Welcome – Hack Club Leaders Summit</title>
+      </Head>
       <div {...$({
         display: "flex",
         flexDirection: "column",
@@ -25,28 +34,38 @@ export default function Home() {
         color: "var(--red)",
         padding: "24px",
       })}>
-        <div {...$({
-          animate$fadeIn: {
-            args: ["fromBottom"],
-            duration: "0.5s"
-          }
-        })}>
+        <div>
 
-          <h1 style={{
+          <h1 {...$({
             marginBottom: "16px",
-          }}>Welcome!</h1>
+            animate$fadeIn: {
+              duration: "0.5s",
+              delay: "0s",
+              args: ["fromBottom"]
+            }
+          })}>Welcome!</h1>
 
-          <p style={{
+          <p {...$({
             marginBottom: "24px",
-          }}>Sign in to access your ticket, view the event schedule, select workshops, and more!</p>
+            animate$fadeIn: {
+              duration: "0.5s",
+              delay: "0.5s",
+              args: ["fromBottom"]
+            }
+          })}>Sign in to access your ticket, view the event schedule, select workshops, and more!</p>
 
-          <div style={{
+          <div {...$({
             width: "min(100%, 400px)",
             gap: "12px",
             display: "flex",
-            flexDirection: "column",  
-          }}>
-            <div style={{
+            flexDirection: "column",
+            animate$fadeIn: {
+              duration: "0.5s",
+              delay: "1s",
+              args: ["fromBottom"]
+            }
+          })}>
+            <div {...$({
               textDecoration: "none",
               color: "var(--tan)",
               background: "var(--red)",
@@ -57,7 +76,7 @@ export default function Home() {
               justifyContent: "space-between",
               flexDirection: "row",
               width: "100%"
-            }}>
+            })}>
               <style dangerouslySetInnerHTML={{__html: `
                 .inputFocus:focus {
                   outline: none;
@@ -74,7 +93,7 @@ export default function Home() {
                   opacity: 0.7;
                 }
               `}} />
-              <input style={{
+              <input {...$[akaya.className].inputFocus({
                 padding: "8px",
                 fontSize: "24px",
                 flexGrow: "1",
@@ -84,9 +103,16 @@ export default function Home() {
                 borderRadius: "8px",
                 outlineColor: "white",
                 outlineWidth: "2px",
-              }} className={akaya.className + " inputFocus"} placeholder="Email" />
-              <a href="/" style={{ textDecoration: "none" }}>
-                <h2 style={{ fontFamily: "system-ui", padding: "8px", textDecoration: "none", color: "var(--tan)" }}>→</h2>
+              })} placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+              <a href="/login" {...$({ textDecoration: "none" })} onClick={async e => {
+                e.preventDefault();
+
+                const { registered } = await api.auth.sessions.begin.post({
+                  email
+                });
+
+              }}>
+                <h2 {...$({ fontFamily: "system-ui", padding: "8px", textDecoration: "none", color: "var(--tan)" })}>→</h2>
               </a>
             </div>
           </div>
@@ -95,7 +121,7 @@ export default function Home() {
         
       </div>
 
-      <div style={{
+      <div {...$({
         border: "6px solid var(--tan)",
         flexGrow: "1",
         display: "flex",
@@ -107,8 +133,8 @@ export default function Home() {
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
-      }}>
-        <div style={{
+      })}>
+        <div {...$({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -116,9 +142,9 @@ export default function Home() {
           width: "100%",
           height: "min(35vh, 310px)",
           gap: "30px",
-        }}>
-          <img style={{ maxWidth: "min(30vw, 180px)" }} src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg" />
-          <h1 className={cook.className}>Leaders Summit</h1>
+        })}>
+          <img {...$({ maxWidth: "min(30vw, 180px)", animate$fadeIn: { args: ["fromBottom"], delay: "0.5s" } })} src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg" />
+          <h1 {...$[cook.className]({ animate$fadeIn: { args: ["fromBottom"], delay: "1s" } })}>Leaders Summit</h1>
         </div>
       </div>
     </main>
