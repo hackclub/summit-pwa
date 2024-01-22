@@ -16,10 +16,17 @@ export default async function handler(req, res) {
 
   await sendgrid.send({
     to: attendee.fields.email,
-    from: "team@hackclub.com",
+    from: "Hack Club Team <team@hackclub.com>",
     replyTo: "summit@hackclub.com",
-    subject: "Your login code for Hack Club Summit",
-    ...loginCodeEmail(loginCode)
+    subject: `Leaders Summit Login Code: ${loginCode}`,
+    text: `Hello! You recently requested a login code for The Summit. Here it is:\n${loginCode}.\n\nDon't share this code with anyone.`,
+    html: `
+      <p>Hello! You recently requested a login code for The Summit. Here it is:</p>
+      <pre style="text-align:center;background-color:#ebebeb;padding:8px 0;font-size:1.5em;border-radius:4px"><b>${loginCode}</b></pre>
+      <p>We'll see you at The Summit!</p>
+      <p>- Hack Club Team</p>
+      <p><small>Don't share this code with anyone as it gives full access to your ticket and registration.</small>
+    `,
   });
 
   return res.json({ registered: true, codeSent: true });

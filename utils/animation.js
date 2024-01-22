@@ -1,4 +1,5 @@
 import React, { CSSProperties, createElement } from "react";
+import useBreakpoints from "./useBreakpoints";
 
 const themeUtils = {
   createComponent(element, styles) {
@@ -20,7 +21,15 @@ const themeUtils = {
   }
 };
 
+const objectMap = (obj, func) =>
+  Object.fromEntries(
+    Object.entries(obj).map(
+      ([k, v], i) => [k, func(v, k, i)]
+    )
+  );
+
 function fn(styles = {}) {
+  const responsive = useBreakpoints();;
   // @ts-ignore
   let { classes } = this;
   classes = [...classes];
@@ -61,7 +70,10 @@ function fn(styles = {}) {
 
   return {
     className: classes.join(" "),
-    style: styles
+    style: objectMap(styles, style => {
+      if (style instanceof Array) return responsive(...style);
+      return style;
+    })
   };
 }
 

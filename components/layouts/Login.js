@@ -1,6 +1,7 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
 import { Akaya_Kanadaka, UnifrakturCook } from "next/font/google";
+import useBreakpoints from "@/utils/useBreakpoints";
 
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
@@ -14,7 +15,7 @@ export default function Login({ pageName, children }) {
         padding: "0px",
         margin: "0px",
         display: "flex",
-        flexDirection: "row"
+        flexDirection: ["column-reverse", "row"]
       })}
     >
       <Head>
@@ -26,10 +27,10 @@ export default function Login({ pageName, children }) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "start",
-          width: "min(40vw, 600px)",
+          width: ["100vw", "400px", "min(40vw, 600px)"],
           background: "var(--tan)",
           color: "var(--red)",
-          padding: "24px"
+          padding: ["40px 24px", "24px"]
         })}
       >
         {children}

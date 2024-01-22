@@ -115,7 +115,7 @@ export default function LoginPage() {
             placeholder="Login Code"
             value={loginCode}
             disabled={loading}
-            onChange={(e) => setLoginCode(e.target.value.toUpperCase().substring(0, 6).split("").filter(e => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').includes(e)).join(""))}
+            onChange={(e) => setLoginCode(e.target.value.toUpperCase().split("").filter(e => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').includes(e)).join("").substring(0, 6))}
           />
           <a
             href="/login"
