@@ -16,6 +16,17 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const login = async () => {
+    if (loading) return;
+    setLoading(true);
+    const { registered } = await api.auth.sessions.begin.post({
+      email
+    });
+    if (!registered) router.push("/login/register");
+    else router.push("/login"); 
+  }
+
   return (
     <Login pageName="Login">
 
@@ -110,19 +121,16 @@ export default function LoginPage() {
                 value={email}
                 disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") login();
+                }}
               />
               <a
                 href="/login"
                 {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}
                 onClick={async (e) => {
-                  if(loading) return;
                   e.preventDefault();
-                  setLoading(true);
-                  const { registered } = await api.auth.sessions.begin.post({
-                    email
-                  });
-                  if (!registered) router.push("/login/register");
-                  else router.push("/login");
+                  await login();
                 }}
               >
                 <h2

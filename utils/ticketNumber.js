@@ -1,18 +1,3 @@
-# Ticket Numbers
-
-The primary identifier behind tickets for The Summit are ticket numbers. These ticket numbers are 13-digit numbers generated based on the following format:
-
-```
-12 - Hash of the attendee's name
-   34 - Hash of the attendee's email
-      56789012 - 8 random & unique digits
-               3 - Checksum digit (see below)
-```
-
-## Implementation
-
-```js
-const crypto = require("crypto");
 
 function checksum(number) {
   const digits = (number + "").split("");
@@ -38,14 +23,14 @@ async function hash(message, salt = "", length = 2) {
 function randomDigits(length) {
   let digits = "";
 
-  for (foo of new Array(length)) {
+  for (const foo of new Array(length)) {
     digits += Math.floor(Math.random() * 10);
   }
 
   return digits;
 }
 
-async function ticketNumber(name, email) {
+export async function ticketNumber(name, email) {
   const hashName = await hash(name);
   const hashEmail = await hash(email);
   const random = randomDigits(8);
@@ -55,6 +40,3 @@ async function ticketNumber(name, email) {
 
   return ticketNumber;
 }
-
-ticketNumber("Fiona Hackworth", "fiona@hackclub.com").then(console.log);
-```

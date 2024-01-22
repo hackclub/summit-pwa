@@ -17,8 +17,25 @@ export default function LoginPage() {
   const [loginCode, setLoginCode] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const login = async () => {
+    if (loading) return;
+    setLoading(true);
+
+    const { authorized } = await api.auth.sessions.authorize.post({
+      loginCode
+    });
+
+    if (!authorized){
+      setLoading(false);
+      setLoginCode("");
+      return alert("🧙‍♀️ What sort of witchcraft is this? That's an invalid login code!");
+    }
+    if (authorized) router.push("/dashboard");
+  }
+
   return (
-    <Login pageName="Login">
+    <Login pageName="Login" limitedAnimations={true}>
       <h1
         {...$({
           marginBottom: "16px",
@@ -116,24 +133,16 @@ export default function LoginPage() {
             value={loginCode}
             disabled={loading}
             onChange={(e) => setLoginCode(e.target.value.toUpperCase().split("").filter(e => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').includes(e)).join("").substring(0, 6))}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") login();
+            }}
           />
           <a
             href="/login"
             {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}
             onClick={async (e) => {
-              if(loading) return;
               e.preventDefault();
-              setLoading(true);
-              const { authorized } = await api.auth.sessions.authorize.post({
-                loginCode
-              });
-
-              if (!authorized){
-                setLoading(false);
-                setLoginCode("");
-                return alert("🧙‍♀️ What sort of witchcraft is this? That's an invalid login code!");
-              }
-              if (authorized) router.push("/dashboard");
+              await login();
             }}
           >
             <h2

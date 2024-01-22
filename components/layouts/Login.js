@@ -6,7 +6,7 @@ import useBreakpoints from "@/utils/useBreakpoints";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
-export default function Login({ pageName, children }) {
+export default function Login({ pageName, children, limitedAnimations = false }) {
   return (
     <main
       {...$[akaya.className]({
@@ -65,19 +65,24 @@ export default function Login({ pageName, children }) {
           <img
             {...$({
               maxWidth: "min(30vw, 180px)",
-              animate$fadeIn: {
-                args: ["fromBottom"],
-                delay: "0.5s"
-              }
+              ...(limitedAnimations ? {} : {
+                animate$fadeIn: {
+                  args: ["fromBottom"],
+                  delay: "0.5s"
+                }
+              })
+              
             })}
             src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"
           />
           <h1
             {...$[cook.className]({
-              animate$fadeIn: {
-                args: ["fromBottom"],
-                delay: "1s"
-              }
+              ...(limitedAnimations ? {} : {
+                animate$fadeIn: {
+                  args: ["fromBottom"],
+                  delay: "1s"
+                }
+              })
             })}
           >
             Leaders Summit

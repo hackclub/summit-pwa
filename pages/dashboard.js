@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import $ from "@/utils/animation";
 import api from "@/lib/api";
+import Main from "@/components/layouts/Main";
 
 export default function Dashboard({user}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <Main pageName="Dashboard">
+      <h1>Welcome, {user.fields.first_name}!</h1>
       <p>
         {JSON.stringify(user)}
       </p>
@@ -29,7 +30,7 @@ export default function Dashboard({user}) {
           {loading ? "👋👋👋👋👋👋👋👋👋" : "Sign out"}
         </a>
       </p>
-    </div>
+    </Main>
   );
 }
 
@@ -40,6 +41,14 @@ export const getServerSideProps = async ({req, res}) => {
     return {
       redirect: {
         destination: '/',
+        permanent: false,
+      },
+    }
+  }
+  if(!user.fields.ticketing_ticketNumber) {
+    return {
+      redirect: {
+        destination: "https://forms.hackclub.com/t/2HZmvUZVCqus?id=" + user.id,
         permanent: false,
       },
     }

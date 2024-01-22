@@ -9,7 +9,7 @@ const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
 export default function Register() {
   return (
-    <Login pageName="Register">
+    <Login pageName="Register" limitedAnimations={true}>
       <h1
         {...$({
           marginBottom: "16px",
