@@ -10,9 +10,15 @@ export default function Dashboard({user}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
-    <Main pageName="Dashboard">
-      <h1>Welcome, {user.fields.first_name}!</h1>
-      <p>
+    <Main pageName="Dashboard" red>
+      <h1 style={{
+        marginBottom: '16px',
+      }}>Welcome, {user.fields.first_name}!</h1>
+      <p>You're all set. We'll see you at The Summit!</p>
+      <br />
+      <h2>Your Ticket</h2>
+      <br />
+      {/* <p>
         {JSON.stringify(user)}
       </p>
       <p>
@@ -29,7 +35,10 @@ export default function Dashboard({user}) {
         >
           {loading ? "👋👋👋👋👋👋👋👋👋" : "Sign out"}
         </a>
-      </p>
+      </p> */}
+      <img src="https://cloud-pw2yr4yha-hack-club-bot.vercel.app/0frame_3.svg" style={{
+        width: '100%',
+      }} />
     </Main>
   );
 }

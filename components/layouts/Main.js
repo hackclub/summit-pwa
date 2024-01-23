@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
-export default function Login({ pageName, children, limitedAnimations = false }) {
+export default function Login({ pageName, children, limitedAnimations = false, red = false }) {
   const router = useRouter();
   return (
     <div
@@ -80,10 +80,20 @@ export default function Login({ pageName, children, limitedAnimations = false })
         background: 'var(--tan)',
         flexGrow: 1,
         color: 'var(--red)',
-        padding: '24px'
-
+        ...(red ? {
+          background: 'var(--red)',
+          color: 'var(--tan)',
+        } : {})
       })}>
-        {children}
+        <div style={{
+          maxWidth: 'min(1000px, 100vw - 48px)',
+          margin: '0 auto',
+          paddingTop: '96px',
+          paddingBottom: '24px',
+          width: '100%',
+        }}>
+          {children}
+        </div>
       </div>
     </div>
   );
