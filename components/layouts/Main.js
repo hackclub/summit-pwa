@@ -25,6 +25,9 @@ export default function Login({ pageName, children, limitedAnimations = false })
       <Head>
         <title>{pageName} – Hack Club Leaders Summit</title>
       </Head>
+      <style>{`#nprogress .bar {
+        top: 50px!important;
+      }`}</style>
       <nav {...$[akaya.className]({
         display: 'flex',
         height: '56px',
