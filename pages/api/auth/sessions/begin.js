@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     from: "Hack Club Team <team@hackclub.com>",
     replyTo: "summit@hackclub.com",
     subject: `Leaders Summit Login Code: ${loginCode}`,
-    ...loginCodeEmail(loginCode)
+    ...loginCodeEmail(loginCode, attendee)
   });
 
   return res.json({ registered: true, codeSent: true });

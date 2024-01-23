@@ -43,13 +43,13 @@ export default function Login({ pageName, children, limitedAnimations = false, r
           })}
           src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"
         />
-        <h2 {...$[cook.className]()}>
+        <h2 {...$[cook.className]({display: ["none", "block"]})}>
           Leaders Summit
         </h2>
         <div style={{flexGrow: 1}} /> 
         <Link href="/dashboard" style={{ textDecoration: 'none'}}>
           <h3 {...$({color: 'white', textDecoration: 'none'})}>
-            Your Ticket
+            <span {...$({display: ["none", "inline-block"]})}>Your</span> Ticket
           </h3>
         </Link>
         <Link href="/schedule" style={{ textDecoration: 'none'}}>
@@ -59,7 +59,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
         </Link>
         <Link href="/photos" style={{ textDecoration: 'none'}}>
           <h3 {...$({color: 'white', textDecoration: 'none'})}>
-            Photo & Video Album
+            <span {...$({display: ["none", "inline-block"]})}>Photo & Video</span> Album
           </h3>
         </Link>
         <a

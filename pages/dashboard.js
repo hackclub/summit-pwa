@@ -12,11 +12,14 @@ export default function Dashboard({user}) {
   return (
     <Main pageName="Dashboard" red>
       <h1 style={{
-        marginBottom: '16px',
+        marginBottom: '8px',
       }}>Welcome, {user.fields.first_name}!</h1>
-      <p>You're all set. We'll see you at The Summit!</p>
-      <br />
-      <h2>Your Ticket</h2>
+      <p style={{
+        maxWidth: '800px',
+      }}>
+        You're all set; we're looking forward to seeing you at The Summit! Please make sure to have 
+        your ticket on hand at check-in (we've also emailed it to you). 
+      </p>
       <br />
       {/* <p>
         {JSON.stringify(user)}

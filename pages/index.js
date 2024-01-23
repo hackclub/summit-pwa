@@ -29,8 +29,7 @@ export default function LoginPage() {
 
   return (
     <Login pageName="Login">
-
-<div>
+      <div>
           <h1
             {...$({
               marginBottom: "16px",
