@@ -1,5 +1,6 @@
 import React, { CSSProperties, createElement } from "react";
 import useBreakpoints from "./useBreakpoints";
+import { objectMap } from "./objectIterationUtils";
 
 const themeUtils = {
   createComponent(element, styles) {
@@ -20,13 +21,6 @@ const themeUtils = {
     );
   }
 };
-
-const objectMap = (obj, func) =>
-  Object.fromEntries(
-    Object.entries(obj).map(
-      ([k, v], i) => [k, func(v, k, i)]
-    )
-  );
 
 function fn(styles = {}) {
   const responsive = useBreakpoints();;

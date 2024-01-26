@@ -12,7 +12,6 @@ export default function App({ Component, pageProps }) {
     <>
       <Toaster />
       <NextNProgress height={8} color="var(--red)" transformCSS={css => {
-        console.log(css);
         return <style>
           {css + `\n\n#nprogress .bar {
             box-shadow: none!important;

@@ -47,7 +47,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
           Leaders Summit
         </h2>
         <div style={{flexGrow: 1}} /> 
-        <Link href="/dashboard" style={{ textDecoration: 'none'}}>
+        {/* <Link href="/dashboard" style={{ textDecoration: 'none'}}>
           <h3 {...$({color: 'white', textDecoration: 'none'})}>
             <span {...$({display: ["none", "inline-block"]})}>Your</span> Ticket
           </h3>
@@ -61,7 +61,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
           <h3 {...$({color: 'white', textDecoration: 'none'})}>
             <span {...$({display: ["none", "inline-block"]})}>Photo & Video</span> Album
           </h3>
-        </Link>
+        </Link> */}
         <a
           href="/"
           {...$({ color: 'white', textDecoration: 'none' })}
