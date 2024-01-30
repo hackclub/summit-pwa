@@ -197,14 +197,14 @@ export const getServerSideProps = async ({req, res}) => {
       },
     }
   }
-  if(!user.fields.ticketing_ticketNumber) {
-    return {
-      redirect: {
-        destination: "https://forms.hackclub.com/t/2HZmvUZVCqus?id=" + user.id,
-        permanent: false,
-      },
-    }
-  }
+  // if(!user.fields.ticketing_ticketNumber) {
+  //   return {
+  //     redirect: {
+  //       destination: "https://forms.hackclub.com/t/2HZmvUZVCqus?id=" + user.id,
+  //       permanent: false,
+  //     },
+  //   }
+  // }
   return {
     props: {
       user
