@@ -1,6 +1,6 @@
 import { findAttendeeById } from "@/lib/airtable";
 import sendgrid, { loginCodeEmail }  from "@/lib/email";
-import { createTempSession, generateLoginCode } from "@/lib/sessions";
+import { create, generateLoginCode } from "@/lib/sessions";
 import { setCookie } from "cookies-next";
 
 const oneWeek = 60 * 60 * 24 * 7;
