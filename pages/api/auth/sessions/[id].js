@@ -1,4 +1,4 @@
-import { findAttendee } from "@/lib/airtable";
+import { findAttendeeById } from "@/lib/airtable";
 import sendgrid, { loginCodeEmail }  from "@/lib/email";
 import { createTempSession, generateLoginCode } from "@/lib/sessions";
 import { setCookie } from "cookies-next";
