@@ -7,7 +7,7 @@ export default async function confirm (req, res) {
 
     const user = await currentUser(sessionId);
 
-    const { dietaryRestrictions, email, age } = req.body;
+    const { dietaryRestrictions, email, age, waiverType } = req.body;
 
     let updated = false;
     if (!user.fields.ticketing_age) {
@@ -16,6 +16,7 @@ export default async function confirm (req, res) {
                 ticketing_dietaryRestrictions: dietaryRestrictions,
                 ticketing_parentEmail: email,
                 ticketing_age: age,
+                ticketing_waiverType: waiverType,
             });
             updated = true;
         } catch (err) {

@@ -6,11 +6,13 @@ import $ from "@/utils/animation";
 import api from "@/lib/api";
 import Main from "@/components/layouts/Main";
 import useDevMode from "@/utils/useDevMode";
+import Input from "@/components/Input";
 
 function Form () {
   const router = useRouter();
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
+  const [waiverType, setWaiverType] = useState("");
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
 
   return (
@@ -20,71 +22,79 @@ function Form () {
         flexDirection: "column",
         gap: "16px",
       }}>
-        <div style={{
-          display: "flex",
-          gap: "16px",
-          height: "32px",
-          alignItems: "center",
-          maxWidth: "400px"
-        }}>
-          <label for="dietaryRestrictions">Dietary Restrictions</label>
-          <input name="dietaryRestrictions" placeholder="For example, 'Vegetarian'" type="text" style={{
-            width: "100%",
-            height: "32px",
-            borderRadius: "4px",
-            border: "1px solid var(--red)",
-            padding: "0 8px",
-          }} value={dietaryRestrictions} onChange={e => {
-            const newDietaryRestrictions = e.target.value;
+        <Input name="dietaryRestrictions" label="Dietary Restrictions" placeholder="For example, 'Vegetarian'" value={dietaryRestrictions} onChange={e => {
+          const newDietaryRestrictions = e.target.value;
 
-            setDietaryRestrictions(newDietaryRestrictions);
-          }} />
-        </div>
+          setDietaryRestrictions(newDietaryRestrictions);
+        }} />
 
-        <div style={{
-          display: "flex",
-          gap: "16px",
-          height: "32px",
-          alignItems: "center",
-          maxWidth: "400px"
-        }}>
-          <label for="age">Age</label>
-          <input name="age" placeholder="Your age" type="number" style={{
-            width: "100%",
-            height: "32px",
-            borderRadius: "4px",
-            border: "1px solid var(--red)",
-            padding: "0 8px",
-          }} value={age} onChange={e => {
-            const newAge = e.target.value;
+        <Input name="age" label="Age" placeholder="Your age" value={age} onChange={e => {
+          const newAge = e.target.value;
 
-            setAge(newAge.substring(0, 3).split('.').join(''))
-          }} />
-        </div>
+          setAge(newAge.substring(0, 3).split('.').join(''))
+        }} />
         
         {age && +age < 18 && <>
-          <div style={{
-            display: "flex",
-            gap: "16px",
-            height: "32px",
-            alignItems: "center",
-            maxWidth: "400px"
-          }}>
-            <label for="email">Parent/Guardian Email Address</label>
-            <input name="email" placeholder="Parent/Guardian Email" type="email" style={{
-              width: "100%",
-              height: "32px",
-              borderRadius: "4px",
-              border: "1px solid var(--red)",
-              padding: "0 8px",
-            }} value={email} onChange={e => {
-              const newEmail = e.target.value;
+          <Input name="email" label="Parent/Guardian Email Address" placeholder="Parent/Guardian Email" type="email" value={email} onChange={e => {
+            const newEmail = e.target.value;
 
-              setEmail(newEmail);
-            }} />
-          </div>
+            setEmail(newEmail);
+          }} />
           <p>(We need this to send your parents a waiver)</p>
         </>}
+
+        <div>
+          <h3>What type of waiver would you like?</h3>
+          <p>We offer a standard waiver which gives attendees the ability to participate in all Summit activities (including staffed outings).<br />We also offer a freedom waiver which includes the benefits of the standard waiver, but also gives attendees the freedom to explore with their team.<br/>We suggest the freedom waiver!</p>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            marginTop: '8px'
+          }}>
+            <div style={{
+              border: '1px solid var(--tan)',
+              padding: '8px',
+              borderRadius: '4px',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '8px',
+              cursor: 'pointer',
+              background: waiverType == "freedom" ? "var(--tan)" : "",
+              color: waiverType == "freedom" ? "var(--red)" : ""
+            }} onClick={() => {
+              setWaiverType("freedom");
+            }}>
+              <input id="waiverType_freedom" type="radio" name="waiverType" value="freedom" checked={waiverType === "freedom"} onChange={e => {
+                setWaiverType(e.target.value);
+              }} style={{
+                cursor: 'pointer'
+              }} />
+              <label for="waiverType_freedom" style={{ cursor: 'pointer' }}>Standard Waiver</label>
+            </div>
+            <div style={{
+              border: '1px solid var(--tan)',
+              padding: '8px',
+              borderRadius: '4px',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '8px',
+              cursor: 'pointer',
+              background: waiverType == "standard" ? "var(--tan)" : "",
+              color: waiverType == "standard" ? "var(--red)" : ""
+            }} onClick={() => {
+              setWaiverType("standard");
+            }}>
+              <input id="waiverType_standard" type="radio" name="waiverType" value="standard" checked={waiverType === "standard"} onChange={e => {
+                setWaiverType(e.target.value);
+              }} style={{
+                cursor: 'pointer'
+              }} />
+              <label for="waiverType_standard" style={{ cursor: 'pointer' }}>Freedom Waiver</label>
+            </div>
+          </div>
+        </div>
+
       </div>
       <br />
       <br />
@@ -94,7 +104,8 @@ function Form () {
           const { updated } = await api.attendee.setConfirmInfo.post({
             email,
             dietaryRestrictions,
-            age: +age
+            age: +age,
+            waiverType
           });
           if (!updated) error = 3;
         } catch (err) { error = 4 }
