@@ -29,7 +29,9 @@ export default function LoginPage() {
 
   return (
     <Login pageName="Login">
-      <div>
+      <div style={{
+        maxWidth: "100%"
+      }}>
           <h1
             {...$({
               marginBottom: "16px",
@@ -114,7 +116,8 @@ export default function LoginPage() {
                   color: "var(--red)",
                   borderRadius: "8px",
                   outlineColor: "white",
-                  outlineWidth: "2px"
+                  outlineWidth: "2px",
+                  minWidth: "0px"
                 })}
                 placeholder="Email"
                 value={email}
