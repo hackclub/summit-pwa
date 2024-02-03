@@ -132,6 +132,9 @@ export default function LoginPage() {
             })}
             autoComplete="off"
             spellCheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
             placeholder="Login Code"
             value={loginCode}
             disabled={loading}
