@@ -25,6 +25,15 @@ export default function Login({ pageName, children, limitedAnimations = false, r
       <Head>
         <title>{pageName} – Hack Club Leaders Summit</title>
       </Head>
+      <div style={{
+        position: 'absolute',
+        top: '55px',
+        left: '0px',
+        height: '1px',
+        width: '100%',
+        background: 'var(--tan)',
+        zIndex: '10000000000'
+      }} />
       <style>{`#nprogress .bar {
         top: 50px!important;
       }`}</style>
@@ -87,6 +96,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
       })}>
         <div style={{
           maxWidth: 'min(1000px, 100vw - 48px)',
+          // padding: 'max(calc((100vw - 1000px) / 2), 24px)',
           margin: '0 auto',
           paddingTop: '96px',
           paddingBottom: '24px',
