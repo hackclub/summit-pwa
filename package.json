@@ -15,6 +15,7 @@
     "@walletpass/pass-js": "^6.9.1",
     "airtable-plus": "^1.0.4",
     "cookies-next": "^4.1.0",
+    "google-auth-library": "^9.6.2",
     "jimp": "^0.22.10",
     "next": "14.0.4",
     "nextjs-progressbar": "^0.0.16",

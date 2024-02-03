@@ -128,6 +128,7 @@ export default function LoginPage() {
               outlineColor: "white",
               outlineWidth: "2px",
               height: "56px",
+              minWidth: "0px"
             })}
             placeholder="Login Code"
             value={loginCode}
