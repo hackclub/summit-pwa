@@ -121,6 +121,7 @@ export default function LoginPage() {
                   minWidth: "0px"
                 })}
                 placeholder="Email"
+                type="email"
                 value={email}
                 disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
