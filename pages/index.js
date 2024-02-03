@@ -106,27 +106,29 @@ export default function LoginPage() {
               `
                 }}
               />
-              <input
-                {...$[akaya.className].inputFocus({
-                  padding: "8px",
-                  fontSize: "24px",
-                  flexGrow: "1",
-                  border: "2px solid var(--red)",
-                  background: "var(--tan)",
-                  color: "var(--red)",
-                  borderRadius: "8px",
-                  outlineColor: "white",
-                  outlineWidth: "2px",
-                  minWidth: "0px"
-                })}
-                placeholder="Email"
-                value={email}
-                disabled={loading}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyUp={(e) => {
-                  if (e.key === "Enter") login();
-                }}
-              />
+              <form onSubmit={e => e.preventDefault()}>
+                <input
+                  {...$[akaya.className].inputFocus({
+                    padding: "8px",
+                    fontSize: "24px",
+                    flexGrow: "1",
+                    border: "2px solid var(--red)",
+                    background: "var(--tan)",
+                    color: "var(--red)",
+                    borderRadius: "8px",
+                    outlineColor: "white",
+                    outlineWidth: "2px",
+                    minWidth: "0px"
+                  })}
+                  placeholder="Email"
+                  value={email}
+                  disabled={loading}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter") login();
+                  }}
+                />
+              </form>
               <a
                 href="/login"
                 {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}

@@ -130,6 +130,8 @@ export default function LoginPage() {
               height: "56px",
               minWidth: "0px"
             })}
+            autoComplete="off"
+            spellCheck="false"
             placeholder="Login Code"
             value={loginCode}
             disabled={loading}
