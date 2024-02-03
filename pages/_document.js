@@ -8,7 +8,9 @@ export default function Document() {
         <link rel="favicon" href="/favicon.png" />
         <link rel="shortcut icon" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/assets/apple.png" />
-        <link rel="apple-touch-startup-image" href="/launch.png" />
+        <link rel="apple-touch-startup-image" href="/assets/apple.png" />
+        <meta name="apple-mobile-web-app-title" content="Summit" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <body style={{ margin: "0px!important" }}>
         <Main />
