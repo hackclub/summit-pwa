@@ -22,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-parallax-tilt": "^1.7.209",
     "uuidv4": "^6.2.13"
   }
 }

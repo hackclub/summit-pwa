@@ -1,12 +1,12 @@
 import { Akaya_Kanadaka, UnifrakturCook, Space_Mono } from "next/font/google";
-
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 const space = Space_Mono({ weight: "400", subsets: ["latin"] });
+import Tilt from 'react-parallax-tilt';
 
 function Cutout ({ side }) {
   return (
-    <img src="/assets/cutout.png" class="absolute noselect nodrag" style={{
+    <img src="/assets/cutout.png" className="absolute noselect nodrag" style={{
       top: "50%",
       [side]: "0px",
       transform: "translateY(-50%) " + (side === "right" ? "rotateY(180deg)" : "rotateY(0deg)"),
@@ -37,6 +37,7 @@ export default function Ticket ({ user }) {
         margin: '24px max(calc((100vw - 1000px) / 2), 24px)',
         width: "max-content"
       }}>
+      <Tilt>
         <div className="flex flex-row w-100 red-i relative" style={{
           width: "1000px"
         }}>
@@ -143,6 +144,7 @@ export default function Ticket ({ user }) {
             </div>
           </div>
         </div>
+      </Tilt>
       </div>
     </div>
   )

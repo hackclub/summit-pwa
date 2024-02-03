@@ -45,11 +45,11 @@ export default function Register() {
         })}
       >
         <Link href="/">
-          <button class="outlined">Back</button>
+          <button className="outlined">Back</button>
         </Link>
 
         <Link href="https://summit.hackclub.com/#dream">
-          <button class="red">Register →</button>
+          <button className="red">Register →</button>
         </Link>
       </div>
     </Login>
