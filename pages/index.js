@@ -32,6 +32,7 @@ export default function LoginPage() {
       <div style={{
         maxWidth: "100%"
       }}>
+        <form onSubmit={e => e.preventDefault()}>
           <h1
             {...$({
               marginBottom: "16px",
@@ -106,29 +107,27 @@ export default function LoginPage() {
               `
                 }}
               />
-              <form onSubmit={e => e.preventDefault()}>
-                <input
-                  {...$[akaya.className].inputFocus({
-                    padding: "8px",
-                    fontSize: "24px",
-                    flexGrow: "1",
-                    border: "2px solid var(--red)",
-                    background: "var(--tan)",
-                    color: "var(--red)",
-                    borderRadius: "8px",
-                    outlineColor: "white",
-                    outlineWidth: "2px",
-                    minWidth: "0px"
-                  })}
-                  placeholder="Email"
-                  value={email}
-                  disabled={loading}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onKeyUp={(e) => {
-                    if (e.key === "Enter") login();
-                  }}
-                />
-              </form>
+              <input
+                {...$[akaya.className].inputFocus({
+                  padding: "8px",
+                  fontSize: "24px",
+                  flexGrow: "1",
+                  border: "2px solid var(--red)",
+                  background: "var(--tan)",
+                  color: "var(--red)",
+                  borderRadius: "8px",
+                  outlineColor: "white",
+                  outlineWidth: "2px",
+                  minWidth: "0px"
+                })}
+                placeholder="Email"
+                value={email}
+                disabled={loading}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") login();
+                }}
+              />
               <a
                 href="/login"
                 {...$({ textDecoration: "none", cursor: loading ? "default" : "pointer" })}
@@ -153,7 +152,8 @@ export default function LoginPage() {
               </a>
             </div>
           </div>
-        </div>
+        </form>
+      </div>
     </Login>
   );
 }
