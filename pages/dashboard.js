@@ -31,7 +31,7 @@ export default function Dashboard({user}) {
 
       <Ticket user={user} />
 
-      <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false} target="_parent">
+      <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
         <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
       </Link>
 
