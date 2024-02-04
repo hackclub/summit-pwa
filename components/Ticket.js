@@ -9,7 +9,7 @@ function Cutout ({ side }) {
     <img src="/assets/cutout.png" className="absolute noselect nodrag" style={{
       top: "50%",
       [side]: "0px",
-      transform: "translateY(-50%) " + (side === "right" ? "rotateY(180deg)" : "rotateY(0deg)"),
+      transform: "translateY(-50%) " + (side === "right" ? "rotateY(180deg) translateX(-1px)" : "rotateY(0deg) translateX(-1px)"),
       height: "64px",
     }} />
   )
@@ -34,10 +34,10 @@ export default function Ticket ({ user }) {
       whiteSpace: 'nowrap'
     }}>
       <div style={{
-        margin: '24px max(calc((100vw - 1000px) / 2), 24px)',
+        margin: '40px max(calc((100vw - 1000px) / 2), 24px)',
         width: "max-content"
       }}>
-      <Tilt>
+      <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} glareEnable={false}>
         <div className="flex flex-row w-100 red-i relative" style={{
           width: "1000px"
         }}>
