@@ -1,11 +1,11 @@
 import { updateAttendeeById } from "@/lib/airtable";
-import { currentUser } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
 
 export default async function confirm (req, res) {
     const sessionId = getCookie("session", { req, res });
 
-    const user = await currentUser(sessionId);
+    const user = await Session.currentUser(sessionId);
 
     const { dietaryRestrictions, email, age, waiverType } = req.body;
 

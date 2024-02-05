@@ -6,7 +6,7 @@ import Login from "@/components/layouts/Login";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { currentUser } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
 
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
@@ -116,6 +116,7 @@ export default function LoginPage() {
               `
             }}
           />
+          <span className={space.className} style={{ display: 'none' }}>Login</span> {/* font loader */}
           <input
             {...$.inputFocus({
               padding: "8px",
@@ -172,9 +173,9 @@ export default function LoginPage() {
 }
 
 export const getServerSideProps = async ({req, res}) => {
-  const sessionId = getCookie('session', { req, res });
-  const user = await currentUser(sessionId);
-  if (user) {
+  const session = await Session.from(req, res);
+
+  if (session.authorized && await session.currentUser()) {
     return {
       redirect: {
         destination: '/dashboard',

@@ -1,18 +1,20 @@
 import { findAttendee } from "@/lib/airtable";
 import sendgrid, { loginCodeEmail }  from "@/lib/email";
-import { create, generateLoginCode } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { setCookie } from "cookies-next";
 
 const oneWeek = 60 * 60 * 24 * 7;
 
 export default async function handler(req, res) {
   const attendee = await findAttendee(req.body.email);
+
   if (!attendee) return res.json({ registered: false });
 
-  const { sessionId } = await create(attendee.fields.email);
-  setCookie("session", sessionId, { req, res, maxAge: oneWeek });
+  const session = await Session.create(attendee.fields.email);
+  setCookie("session", session.id, { req, res, maxAge: oneWeek });
 
-  const { loginCode } = await generateLoginCode(sessionId);
+  const loginCode = await session.generateLoginCode();
+
   try {
     await sendgrid.send({
       to: attendee.fields.email,

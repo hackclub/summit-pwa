@@ -1,13 +1,16 @@
 import { findAttendee } from "@/lib/airtable";
-import { loginWithCode, currentSession } from "@/lib/sessions";
-import { getCookie } from "cookies-next";
+import Session from "@/lib/sessions";
 
 export default async function handler(req, res) {
-  const { loginCode } = req.body;
-  let sessionId = getCookie("session", { req, res });
-  await loginWithCode(sessionId, loginCode);
-  let session = await currentSession(sessionId);
-  return res.json(
-    session ? { authorized: true, ...session } : { authorized: false }
-  );
+  try {
+    const { loginCode } = req.body;
+
+    const session = await Session.from(req, res);
+    await session.loginWithCode(loginCode);
+
+    return res.json({ authorized: true, ...session });
+  } catch (err) {
+    console.error(err);
+    return res.json({ authorized: false });
+  }
 }

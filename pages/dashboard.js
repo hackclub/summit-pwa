@@ -1,4 +1,4 @@
-import { currentUser } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -65,9 +65,9 @@ export default function Dashboard({user}) {
 }
 
 export const getServerSideProps = async ({req, res}) => {
-  const sessionId = getCookie('session', { req, res });
-  const user = await currentUser(sessionId);
-  if(!user) {
+  const session = await Session.from(req, res);
+
+  if (!session.authorized) {
     return {
       redirect: {
         destination: '/',
@@ -75,14 +75,9 @@ export const getServerSideProps = async ({req, res}) => {
       },
     }
   }
-  // if(!user.fields.ticketing_ticketNumber) {
-  //   return {
-  //     redirect: {
-  //       destination: "https://forms.hackclub.com/t/2HZmvUZVCqus?id=" + user.id,
-  //       permanent: false,
-  //     },
-  //   }
-  // }
+
+  const user = await session.currentUser();
+  
   return {
     props: {
       user

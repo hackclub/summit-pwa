@@ -6,8 +6,9 @@ import Login from "@/components/layouts/Login";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { currentUser } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
+import Build from "@/components/Build";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 const space = Space_Mono({ weight: "400", subsets: ["latin"] });
@@ -61,6 +62,12 @@ export default function LoginPage() {
             Sign in to access your ticket, view the event schedule, select
             workshops, and more!
           </p>
+
+          <Build style={{
+            position: 'absolute',
+            bottom: '0px',
+            right: '0px',
+          }} />
 
           <div
             {...$({
@@ -162,9 +169,9 @@ export default function LoginPage() {
 }
 
 export const getServerSideProps = async ({req, res}) => {
-  const sessionId = getCookie('session', { req, res });
-  const user = await currentUser(sessionId);
-  if (user) {
+  const session = await Session.from(req, res);
+
+  if (session.authorized && await session.currentUser()) {
     return {
       redirect: {
         destination: '/dashboard',

@@ -1,11 +1,11 @@
 import { updateAttendeeById } from "@/lib/airtable";
-import { currentUser } from "@/lib/sessions";
+import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
 
 export default async function confirm (req, res) {
-    const sessionId = getCookie("session", { req, res });
-
-    const user = await currentUser(sessionId);
+    const session = await Session.from(req, res);
+    
+    const user = await session.currentAuthorizedUser();
 
     let updated = false;
     if (!user.fields.ticketing_attendanceConfirmed) {
