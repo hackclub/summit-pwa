@@ -16,19 +16,21 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [admin, setAdmin] = useState(false);
 
   const login = async () => {
     if (loading) return;
     setLoading(true);
     const { registered } = await api.auth.sessions.begin.post({
-      email
+      email,
+      as: admin ? 'admin' : 'attendee'
     });
     if (!registered) router.push("/login/register");
     else router.push("/login"); 
   }
 
   return (
-    <Login pageName="Login">
+    <Login pageName="Login" onFlagClick={() => setAdmin(true)}>
       <div style={{
         maxWidth: "100%"
       }}>

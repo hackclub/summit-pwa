@@ -13,14 +13,18 @@ export default async function handler(req, res) {
   setCookie("session", sessionId, { req, res, maxAge: oneWeek });
 
   const { loginCode } = await generateLoginCode(sessionId);
-
-  await sendgrid.send({
-    to: attendee.fields.email,
-    from: "Hack Club Team <team@hackclub.com>",
-    replyTo: "summit@hackclub.com",
-    subject: `Leaders Summit Login Code: ${loginCode}`,
-    ...loginCodeEmail(loginCode, attendee)
-  });
+  try {
+    await sendgrid.send({
+      to: attendee.fields.email,
+      from: `${process.env.SENDGRID_NAME} <${process.env.SENDGRID_EMAIL}>`,
+      replyTo: "summit@hackclub.com",
+      subject: `Leaders Summit Login Code: ${loginCode}`,
+      ...loginCodeEmail(loginCode, attendee)
+    });
+  } catch (err) {
+    console.error(err);
+    console.error(err.response.body.errors);
+  }
 
   return res.json({ registered: true, codeSent: true });
 }

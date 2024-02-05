@@ -6,7 +6,7 @@ import useBreakpoints from "@/utils/useBreakpoints";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
-export default function Login({ pageName, children, limitedAnimations = false }) {
+export default function Login({ pageName, children, limitedAnimations = false, onFlagClick }) {
   return (
     <main
       {...$[akaya.className]({
@@ -74,6 +74,7 @@ export default function Login({ pageName, children, limitedAnimations = false })
               
             })}
             src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"
+            onClick={onFlagClick}
           />
           <h1
             {...$[cook.className]({
