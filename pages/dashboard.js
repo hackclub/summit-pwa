@@ -21,14 +21,6 @@ export default function Dashboard({user}) {
     <Main pageName="Dashboard" red>
       <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
 
-      {waiverStatus == "signed" ? <>
-        Waiver Signed
-      </> : waiverStatus == "sent" ? <>
-        Waiver Sent
-      </> : waiverStatus == "pending" ? <>
-        Waiver Pending
-      </> : <>Something went wrong.</>}
-
       <Ticket user={user} />
 
       <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
