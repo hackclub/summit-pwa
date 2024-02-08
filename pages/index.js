@@ -12,7 +12,6 @@ import Build from "@/components/Build";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 const space = Space_Mono({ weight: "400", subsets: ["latin"] });
-import { generateTicket } from "./api/attendee/generateTicket";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -176,11 +175,6 @@ export default function LoginPage() {
 
 export const getServerSideProps = async ({req, res}) => {
   const session = await Session.from(req, res);
-  const user = await session.currentAuthorizedUser();
-  
-  if(!user.fields.ticketing_ticketNumber) {
-    await generateTicket()
-  }
 
   if (session.authorized && await session.currentUser()) {
     return {
