@@ -20,14 +20,19 @@ export default function LoginPage() {
   const [admin, setAdmin] = useState(false);
 
   const login = async () => {
-    if (loading) return;
-    setLoading(true);
-    const { registered } = await api.auth.sessions.begin.post({
-      email,
-      as: admin ? 'admin' : 'attendee'
-    });
-    if (!registered) router.push("/login/register");
-    else router.push("/login"); 
+    try {
+      if (loading) return;
+      setLoading(true);
+      const { registered } = await api.auth.sessions.begin.post({
+        email,
+        as: admin ? 'admin' : 'attendee'
+      });
+      if (!registered) router.push("/login/register");
+      else router.push("/login"); 
+    } catch (err) {
+      console.error(err);
+      alert("There was error logging in. Please report this error in #summit-app.");
+    }
   }
 
   return (

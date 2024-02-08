@@ -21,17 +21,20 @@ export default function Dashboard({user}) {
     <Main pageName="Dashboard" red>
       { waiverStatus == "signed" ?
         <>
-            <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
+          <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
+          
+          <p className="h3">You're all set for The Summit! Save this ticket & have it ready at the door.</p>
 
-            <Ticket user={user} />
+          <Ticket user={user} />
 
-            <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
-              <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
-            </Link>
-          </>
+          <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
+            <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
+          </Link>
+        </>
         :
         <>
-          <h2 className="mb3">To receive your ticket, please sign the waiver emailed to you.</h2>
+          <h2 className="mb2">To receive your ticket, please sign the waiver emailed to you.</h2>
+          <p className="h3 mb3">Once it's been signed, it may take a bit for your ticket to be generated.</p>
           <img src="https://raw.githubusercontent.com/hackclub/dinosaurs/main/dinosaur_sealing_letters_with_wax.png" height="400px" style={{ borderRadius: '16px', maxWidth: '70vw' }} />
         </>
       }

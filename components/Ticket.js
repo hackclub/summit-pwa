@@ -18,7 +18,7 @@ function Cutout ({ side }) {
 export default function Ticket ({ user }) {
   const data = new Proxy(user.fields, {
     get: (target, prop) => {
-      const newProp = prop.startsWith("_") ? "ticketing_" + prop : prop;
+      const newProp = prop.startsWith("_") ? "ticketing" + prop : prop;
       console.log(target, newProp);
       return target[newProp];
     }
@@ -89,7 +89,7 @@ export default function Ticket ({ user }) {
               </div>
               <div className="flex" style={{flexDirection: 'column'}}>
                 <span>Dietary Restrictions</span>
-                <span style={{fontSize: '1.4em'}}>{user.fields.tickets_shortDietaryRestrictions}</span>
+                <span style={{fontSize: '1.4em'}}>{data._shortDietaryRestrictions}</span>
               </div>
             </div>
           </div>
@@ -102,9 +102,9 @@ export default function Ticket ({ user }) {
             gap: '8px'
           }}>
             <span style={{fontSize: '1.7em'}}>{data.first_name} {data.last_name}</span>
-            <div className="flex mt1 mb2">
-              <img src="https://cloud-elb91ms1w-hack-club-bot.vercel.app/0untitled_1_1.png" height="120px" />
-              <img src="https://cloud-8vbegsy8w-hack-club-bot.vercel.app/0plane_1.png" height="50px" className="ml3 mt2" />
+            <div className="flex mt1 mb2" style={{ alignItems: 'center', gap: "26px" }}>
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(`https://hack.af/${data._ticketNumber}`)}&ecc=M&color=b42d1d&bgcolor=ffec96&format=svg`} height="120px" />
+              <img src="https://cloud-8vbegsy8w-hack-club-bot.vercel.app/0plane_1.png" height="50px" />
             </div>
             <div className="flex" style={{alignItems: 'center', gap: '8px'}}>
               <div>
