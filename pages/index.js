@@ -12,7 +12,6 @@ import Build from "@/components/Build";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 const space = Space_Mono({ weight: "400", subsets: ["latin"] });
-import { generateTicket } from "./api/attendee/generateTicket";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");

@@ -9,6 +9,7 @@ import useDevMode from "@/utils/useDevMode";
 import Input from "@/components/Input";
 import Link from "next/link";
 import Ticket from "@/components/Ticket";
+import { generateTicket } from "./api/attendee/generateTicket";
 
 export default function Dashboard({ user }) {
   const [loading, setLoading] = useState(false);
