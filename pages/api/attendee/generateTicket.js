@@ -1,4 +1,4 @@
-import { findAttendeeById, updateAttendeeById } from "@/lib/airtable";
+import { updateAttendeeById } from "@/lib/airtable";
 import Session from "@/lib/sessions";
 import { ticketNumber } from "@/utils/ticketNumber";
 
@@ -8,7 +8,7 @@ export default async function generateTicket (req, res) {
 
   const number = await ticketNumber(user.fields.first_name + " " + user.fields.last_name, user.fields.email);
 
-  await updateAttendeeById(user.recordId, {"ticketing_ticketNumber": +number});
+  await updateAttendeeById(user.id, {"ticketing_ticketNumber": +number});
 
   res.json({ success: true });
 }
