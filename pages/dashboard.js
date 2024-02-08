@@ -81,7 +81,7 @@ export const getServerSideProps = async ({req, res}) => {
     }
   }
 
-  const user = await session.currentAuthorizedUser();
+  const user = await session.currentUser();
   
   if(!user.fields.ticketing_ticketNumber) {
     await generateTicket()
