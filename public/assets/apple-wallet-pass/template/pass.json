@@ -1,0 +1,63 @@
+{
+  "backgroundColor": "rgb(180,46,30)",
+  "foregroundColor": "rgb(255,236,150)",
+  "logoText": "The Summit",
+  "organizationName": "Hack Club",
+  "passTypeIdentifier": "pass.zip.hackathon.development",
+  "teamIdentifier": "zip.hackathon",
+  "description": "Event ticket for The Summit",
+  "formatVersion": 1,
+  "eventTicket": {
+    "auxiliaryFields": [
+      {
+        "key": "venue",
+        "value": "The Light House",
+        "label": "venue",
+        "attributedValue": "http://maps.apple.com/?address=651+Dolores+St,+San Francisco,+CA+94110",
+        "changeMessage": "Venue changed to %@"
+      }
+    ],
+    "primaryFields": [
+      {
+        "key": "name",
+        "label": "Name",
+        "value": "Fionah H.",
+        "changeMessage": "Name changed to %@",
+        "textAlignment": "PKTextAlignmentNatural"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "value": "2024-02-09T18:00:00-08:00",
+        "label": "DOORS OPEN",
+        "dataDetectorTypes": "PKDataDetectorTypeCalendarEvent",
+        "dateStyle": "PKDateStyleLong",
+        "timeStyle": "PKDateStyleShort",
+        "ignoresTimeZone": true,
+        "key": "start"
+      }
+    ],
+    "backFields": [
+      {
+        "key": "app",
+        "value": "st.hack.af",
+        "label": "Manage your ticket",
+        "attributedValue": "https://st.hack.af"
+      },
+      {
+        "key": "location",
+        "value": "651 Dolores St, San Francisco, CA 94110",
+        "attributedValue": "http://maps.apple.com/?address=651+Dolores+St,+San Francisco,+CA+94110",
+        "label": "Location",
+        "dataDetectorTypes": "PKDataDetectorTypeAddress",
+        "changeMessage": "Location changed to %@"
+      },
+      {
+        "key": "website",
+        "value": "summit.hackclub.com",
+        "label": "Website",
+        "attributedValue": "https://summit.hackclub.com"
+      }
+    ]
+  }
+}

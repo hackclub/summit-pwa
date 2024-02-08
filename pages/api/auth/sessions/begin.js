@@ -1,4 +1,4 @@
-import { findAttendee } from "@/lib/airtable";
+import { findAttendee, findOrganizer } from "@/lib/airtable";
 import sendgrid, { loginCodeEmail }  from "@/lib/email";
 import Session from "@/lib/sessions";
 import { setCookie } from "cookies-next";
@@ -6,22 +6,36 @@ import { setCookie } from "cookies-next";
 const oneWeek = 60 * 60 * 24 * 7;
 
 export default async function handler(req, res) {
-  const attendee = await findAttendee(req.body.email);
+  let email, name;
 
-  if (!attendee) return res.json({ registered: false });
+  if (req.body.admin) {
+    const organizer = await findOrganizer(req.body.email);
 
-  const session = await Session.create(attendee.fields.email);
+    if (!organizer) return res.json({ registered: false });
+
+    email = organizer.fields.email;
+    name = organizer.fields.firstName;
+  } else {
+    const attendee = await findAttendee(req.body.email);
+
+    if (!attendee) return res.json({ registered: false });
+
+    email = attendee.fields.email;
+    name = attendee.fields.first_name;
+  }
+
+  const session = await Session.create(attendee.fields.email, req.body.admin ? "organizer" : "leader");
   setCookie("session", session.id, { req, res, maxAge: oneWeek });
 
   const loginCode = await session.generateLoginCode();
 
   try {
     await sendgrid.send({
-      to: attendee.fields.email,
+      to: email,
       from: `${process.env.SENDGRID_NAME} <${process.env.SENDGRID_EMAIL}>`,
       replyTo: "summit@hackclub.com",
       subject: `Leaders Summit Login Code: ${loginCode}`,
-      ...loginCodeEmail(loginCode, attendee)
+      ...loginCodeEmail(loginCode, name)
     });
   } catch (err) {
     console.error(err);
