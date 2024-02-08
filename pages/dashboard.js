@@ -19,13 +19,22 @@ export default function Dashboard({user}) {
 
   return (
     <Main pageName="Dashboard" red>
-      <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
+      { waiverStatus == "signed" ?
+        <>
+            <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
 
-      <Ticket user={user} />
+            <Ticket user={user} />
 
-      <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
-        <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
-      </Link>
+            <Link href={`/api/passes/${user.fields.ticketing_passId}/pass.pkpass`} prefetch={false}>
+              <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
+            </Link>
+          </>
+        :
+        <>
+          <h2 className="mb3">To receive your ticket, please sign the waiver emailed to you.</h2>
+          <img src="https://raw.githubusercontent.com/hackclub/dinosaurs/main/dinosaur_sealing_letters_with_wax.png" height="400px" style={{ borderRadius: '16px', maxWidth: '70vw' }} />
+        </>
+      }
 
       {dev ? <> 
         <br />
