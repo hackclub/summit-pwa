@@ -80,7 +80,11 @@ export const getServerSideProps = async ({req, res}) => {
     }
   }
 
-  const user = await session.currentUser();
+  const user = await session.currentAuthorizedUser();
+  
+  if(!user.fields.ticketing_ticketNumber) {
+    await generateTicket()
+  }
   
   return {
     props: {

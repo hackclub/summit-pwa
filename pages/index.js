@@ -176,11 +176,6 @@ export default function LoginPage() {
 
 export const getServerSideProps = async ({req, res}) => {
   const session = await Session.from(req, res);
-  const user = await session.currentAuthorizedUser();
-  
-  if(!user.fields.ticketing_ticketNumber) {
-    await generateTicket()
-  }
 
   if (session.authorized && await session.currentUser()) {
     return {
