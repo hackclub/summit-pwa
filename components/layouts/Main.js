@@ -98,7 +98,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
           maxWidth: 'min(1000px, 100vw - 48px)',
           // padding: 'max(calc((100vw - 1000px) / 2), 24px)',
           margin: '0 auto',
-          paddingTop: '96px',
+          paddingTop: '48px',
           paddingBottom: '24px',
           width: '100%',
         }}>
