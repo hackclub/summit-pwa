@@ -33,7 +33,7 @@ export default function LoginPage() {
     }
 
     if (!ticketGenerated) {
-      return router.push("/api/attendee/generateTicket");
+      console.log(await api.attendee.generateTicket.get());
     }
 
     router.push("/dashboard");
