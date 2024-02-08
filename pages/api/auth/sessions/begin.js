@@ -28,6 +28,7 @@ export default async function handler(req, res) {
   setCookie("session", session.id, { req, res, maxAge: oneWeek });
 
   const loginCode = await session.generateLoginCode();
+  let codeSent = true;
 
   try {
     await sendgrid.send({
@@ -38,9 +39,11 @@ export default async function handler(req, res) {
       ...loginCodeEmail(loginCode, name)
     });
   } catch (err) {
+    codeSent = false;
+
     console.error(err);
     console.error(err.response.body.errors);
   }
 
-  return res.json({ registered: true, codeSent: true });
+  return res.json({ registered: true, codeSent });
 }

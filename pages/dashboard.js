@@ -10,7 +10,7 @@ import Input from "@/components/Input";
 import Link from "next/link";
 import Ticket from "@/components/Ticket";
 
-export default function Dashboard({user}) {
+export default function Dashboard({ user }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dev = useDevMode();
@@ -19,7 +19,7 @@ export default function Dashboard({user}) {
 
   return (
     <Main pageName="Dashboard" red>
-      { waiverStatus == "signed" ?
+      {waiverStatus == "signed" ?
         <>
           <h1 className="mb2">Welcome, {user.fields.first_name}!</h1>
           
@@ -31,7 +31,7 @@ export default function Dashboard({user}) {
             <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/add-to-apple-wallet-logo.png" style={{height: "64px"}} alt="Add to Apple Wallet" />
           </Link>
         </>
-        :
+      :
         <>
           <h2 className="mb2">To receive your ticket, please sign the waiver emailed to you.</h2>
           <p className="h3 mb3">Once it's been signed, it may take a bit for your ticket to be generated.</p>

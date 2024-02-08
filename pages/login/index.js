@@ -22,16 +22,21 @@ export default function LoginPage() {
     if (loading) return;
     setLoading(true);
 
-    const { authorized } = await api.auth.sessions.authorize.post({
+    const { authorized, ticketGenerated } = await api.auth.sessions.authorize.post({
       loginCode
     });
 
-    if (!authorized){
+    if (!authorized) {
       setLoading(false);
       setLoginCode("");
       return alert("🧙‍♀️ What sort of witchcraft is this? That's an invalid login code!");
     }
-    if (authorized) router.push("/dashboard");
+
+    if (!ticketGenerated) {
+      return router.push("/api/attendee/generateTicket");
+    }
+
+    router.push("/dashboard");
   }
 
   return (
