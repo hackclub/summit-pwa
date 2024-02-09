@@ -8,7 +8,7 @@
 const schedule = [
   {
     day: {
-      short: "Fri",
+      short: "Friday",
       long: "Friday",
       number: 5,
       date: "August 5th",
@@ -73,7 +73,7 @@ const schedule = [
   },
   {
     day: {
-      short: "Sat",
+      short: "Saturday",
       long: "Saturday",
       number: 6,
       date: "August 6",
@@ -177,7 +177,7 @@ const schedule = [
   },
   {
     day: {
-      short: "Sun",
+      short: "Sunday",
       long: "Sunday",
       number: 7,
       date: "August 7",

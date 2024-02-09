@@ -28,7 +28,7 @@ function LightenDarkenColor(col, amt) {
 }
 
 const Block = styled(Box)`
-  background-color: ${theme.colors.blue};
+  background-color: var(--red);
   border-radius: ${theme.radius};
   position: absolute;
   left: 4em;
@@ -40,7 +40,7 @@ const Block = styled(Box)`
   z-index: 2;
   ${(props) =>
     props.flavor == "closing" &&
-    `background-color: ${theme.colors.red} !important;`}
+    `background-color: ${theme.colors.blue} !important;`}
   ${(props) =>
     props.flavor == "food" &&
     `background-color: ${theme.colors.orange} !important;`}
@@ -103,7 +103,7 @@ class EventCard extends Component {
             <Text color="muted" mb={3}>
               {start}–{end}
             </Text>
-            <MD source={summary} />
+            <MD children={summary} />
           </Modal>
         )}
         <Block
@@ -114,9 +114,6 @@ class EventCard extends Component {
           flavor={flavor}
           onClick={typeof summary === "undefined" ? null : this.toggle}
         >
-          {typeof summary !== "undefined" && (
-            <Icon glyph="external" size={24} />
-          )}
           <Text.span bold>{name}</Text.span>
           <Text fontSize={1}>{subtitle}</Text>
         </Block>

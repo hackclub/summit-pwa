@@ -35,6 +35,7 @@ const ModalContainer = styled(Container).attrs({ bg: 'white' })`
   position: fixed;
   top: 50%;
   left: 50%;
+  color: black;
   transform: translate(-50%, -50%);
   z-index: 1100;
   ${theme.mediaQueries.md} {

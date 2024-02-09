@@ -29,6 +29,7 @@ const DayHeading = styled(Heading.h2).attrs({ mt: 0 })`
   display: block;
   width: 2.5em;
   z-index: 10;
+  color: var(--red);
   background: ${theme.colors.white};
   // @media (prefers-color-scheme: dark) {
   //   background: ${theme.colors.dark};
