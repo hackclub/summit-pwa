@@ -28,7 +28,7 @@ function LightenDarkenColor(col, amt) {
 }
 
 const Block = styled(Box)`
-  background-color: ${theme.colors.blue};
+  background-color: var(--red);
   border-radius: ${theme.radius};
   position: absolute;
   left: 4em;
