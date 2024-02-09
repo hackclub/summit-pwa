@@ -116,7 +116,7 @@ export default function LoginPage() {
                 }}
               />
               <input
-                {...$[akaya.className].inputFocus({
+                {...$.akaya.inputFocus({
                   padding: "8px",
                   fontSize: "24px",
                   flexGrow: "1",
