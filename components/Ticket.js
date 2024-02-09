@@ -63,7 +63,7 @@ export default function Ticket ({ user }) {
                 <span>Ticket issued to</span>
                 <div className="flex" style={{alignItems: 'center', gap: '8px'}}>
                   <span style={{fontSize: '1.7em'}}>{data.first_name} {data.last_name}</span>
-                  <span>from Shelburne, VT</span>
+                  <span>from {user.fields.travelingFrom}</span>
                 </div>
               </div>
             <div className="grid" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px'}}>
@@ -139,7 +139,7 @@ export default function Ticket ({ user }) {
               </div>
               <div style={{flexGrow: '1', height: '0.5px', border: '0.5px solid var(--red)'}} />
               <div>
-                Shelburne, VT
+                {user.fields.travelingFrom}
               </div>
             </div>
           </div>
