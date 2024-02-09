@@ -1,11 +1,7 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
-import { Akaya_Kanadaka, UnifrakturCook } from "next/font/google";
 import Link from "next/link";
 import Login from "@/components/layouts/Login";
-
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
 export default function Register() {
   return (

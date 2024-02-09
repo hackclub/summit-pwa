@@ -1,7 +1,3 @@
-import { Akaya_Kanadaka, UnifrakturCook, Space_Mono } from "next/font/google";
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
-const space = Space_Mono({ weight: "400", subsets: ["latin"] });
 import Tilt from 'react-parallax-tilt';
 
 function Cutout ({ side }) {
@@ -56,8 +52,8 @@ export default function Ticket ({ user }) {
             backgroundSize: 'cover',
           }}>
             <div className="flex" style={{alignItems: 'center', gap: '32px'}}>
-              <h1 className={cook.className}>Leaders Summit</h1>
-              <span className={space.className} style={{fontWeight: '500', fontSize: '1.7em'}}>{data._ticketNumber}</span>
+              <h1 className={"cook"}>Leaders Summit</h1>
+              <span className={"space"} style={{fontWeight: '500', fontSize: '1.7em'}}>{data._ticketNumber}</span>
             </div>
             <div className="flex" style={{flexDirection: 'column'}}>
                 <span>Ticket issued to</span>

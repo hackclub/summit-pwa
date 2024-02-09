@@ -1,15 +1,11 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
-import { Akaya_Kanadaka, UnifrakturCook } from "next/font/google";
 import useBreakpoints from "@/utils/useBreakpoints";
-
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
 export default function Login({ pageName, children, limitedAnimations = false, onFlagClick, staff }) {
   return (
     <main
-      {...$[akaya.className]({
+      {...$["akaya"]({
         width: "100vw",
         height: "100vh",
         padding: "0px",
@@ -77,7 +73,7 @@ export default function Login({ pageName, children, limitedAnimations = false, o
             onClick={onFlagClick}
           />
           <h1
-            {...$[cook.className]({
+            {...$["cook"]({
               ...(limitedAnimations ? {} : {
                 animate$fadeIn: {
                   args: ["fromBottom"],

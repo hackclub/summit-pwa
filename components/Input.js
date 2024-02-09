@@ -1,7 +1,4 @@
 import { useId } from "react"
-import { Akaya_Kanadaka } from "next/font/google";
-
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 
 export default function Input ({ label, name, value, onChange, placeholder }) {
   const id = useId();
@@ -33,7 +30,7 @@ export default function Input ({ label, name, value, onChange, placeholder }) {
         color: "var(--red)",
         fontSize: "20px",
         padding: "12px 12px",
-      }} value={value} className={akaya.className} onChange={onChange} />
+      }} value={value} className={"akaya"} onChange={onChange} />
     </div>
   )
 }

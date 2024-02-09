@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "@api-blueprints/pathmaker": "^1.3.0",
+    "@babel/core": "^7.23.9",
+    "@babel/runtime": "^7.23.9",
+    "@hackclub/design-system": "^0.0.1-18",
     "@sendgrid/mail": "^8.1.0",
     "@vercel/kv": "^1.0.1",
     "@walletpass/pass-js": "^6.9.1",
     "@yudiel/react-qr-scanner": "^1.2.6",
     "airtable-plus": "^1.0.4",
+    "babel-plugin-styled-components": "^2.1.4",
+    "babel-preset-env": "^1.7.0",
     "cookies-next": "^4.1.0",
     "google-auth-library": "^9.6.2",
     "jimp": "^0.22.10",
@@ -23,9 +28,11 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^9.0.1",
     "react-parallax-tilt": "^1.7.209",
     "react-qr-code": "^2.0.12",
     "react-qr-reader": "^3.0.0-beta-1",
+    "styled-components": "^6.1.8",
     "uuidv4": "^6.2.13"
   }
 }

@@ -1,6 +1,5 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
-import { Akaya_Kanadaka, UnifrakturCook, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import Login from "@/components/layouts/Login";
 import api from "@/lib/api";
@@ -8,10 +7,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
-
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
-const space = Space_Mono({ weight: "400", subsets: ["latin"] });
 
 export default function LoginPage() {
   const [loginCode, setLoginCode] = useState("");
@@ -101,7 +96,7 @@ export default function LoginPage() {
             dangerouslySetInnerHTML={{
               __html: `
                 .inputFocus {
-                  font-family: ${space.style.fontFamily};
+                  font-family: 'Space Mono';
                 }
                 .inputFocus:focus {
                   outline: none;
@@ -110,7 +105,7 @@ export default function LoginPage() {
                   transition: 0.1s;
                 }
                 .inputFocus:placeholder-shown {
-                  font-family: ${akaya.style.fontFamily};
+                  font-family: 'Akaya Kanadaka';
                 }
                 .inputFocus:focus::placeholder {
                   color: black;
@@ -123,7 +118,7 @@ export default function LoginPage() {
               `
             }}
           />
-          <span className={space.className} style={{ display: 'none' }}>Login</span> {/* font loader */}
+          <span className={"space"} style={{ display: 'none' }}>Login</span> {/* font loader */}
           <input
             {...$.inputFocus({
               padding: "8px",

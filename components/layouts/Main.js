@@ -1,19 +1,19 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
-import { Akaya_Kanadaka, UnifrakturCook } from "next/font/google";
 import useBreakpoints from "@/utils/useBreakpoints";
 import Link from "next/link"
 import api from "@/lib/api";
 import { useRouter } from "next/router";
 
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
+const akaya = "akaya";
+const cook = "cook";
+const space = "space";
 
 export default function Login({ pageName, children, limitedAnimations = false, red = false }) {
   const router = useRouter();
   return (
     <div
-      {...$[akaya.className]({
+      {...$[akaya]({
         width: "100vw",
         padding: "0px",
         margin: "0px",
@@ -37,7 +37,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
       <style>{`#nprogress .bar {
         top: 50px!important;
       }`}</style>
-      <nav {...$[akaya.className]({
+      <nav {...$[akaya]({
         display: 'flex',
         height: '56px',
         background: 'var(--red)',
@@ -52,7 +52,7 @@ export default function Login({ pageName, children, limitedAnimations = false, r
           })}
           src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"
         />
-        <h2 {...$[cook.className]({display: ["none", "block"]})}>
+        <h2 {...$[cook]({display: ["none", "block"]})}>
           Leaders Summit
         </h2>
         <div style={{flexGrow: 1}} /> 

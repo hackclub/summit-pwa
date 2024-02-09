@@ -1,6 +1,5 @@
 import $ from "@/utils/animation";
 import Head from "next/head";
-import { Akaya_Kanadaka, UnifrakturCook, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import Login from "@/components/layouts/Login";
 import api from "@/lib/api";
@@ -9,9 +8,9 @@ import { useRouter } from "next/router";
 import Session from "@/lib/sessions";
 import { getCookie } from "cookies-next";
 import Build from "@/components/Build";
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
-const space = Space_Mono({ weight: "400", subsets: ["latin"] });
+const akaya = "akaya";
+const cook = "cook";
+const space = "space";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -120,7 +119,7 @@ export default function LoginPage() {
                 }}
               />
               <input
-                {...$[akaya.className].inputFocus({
+                {...$[akaya].inputFocus({
                   padding: "8px",
                   fontSize: "24px",
                   flexGrow: "1",
