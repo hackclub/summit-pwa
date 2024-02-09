@@ -13,6 +13,7 @@
     "@sendgrid/mail": "^8.1.0",
     "@vercel/kv": "^1.0.1",
     "@walletpass/pass-js": "^6.9.1",
+    "@yudiel/react-qr-scanner": "^1.2.6",
     "airtable-plus": "^1.0.4",
     "cookies-next": "^4.1.0",
     "google-auth-library": "^9.6.2",
@@ -23,6 +24,8 @@
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
     "react-parallax-tilt": "^1.7.209",
+    "react-qr-code": "^2.0.12",
+    "react-qr-reader": "^3.0.0-beta-1",
     "uuidv4": "^6.2.13"
   }
 }

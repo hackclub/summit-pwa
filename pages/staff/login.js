@@ -23,7 +23,8 @@ export default function LoginPage() {
       if (loading) return;
       setLoading(true);
       const { registered } = await api.auth.sessions.begin.post({
-        email
+        email,
+        admin: true
       });
       if (!registered) router.push("/login/register");
       else router.push("/login"); 
@@ -34,7 +35,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Login pageName="Login">
+    <Login pageName="Login" staff>
       <div style={{
         maxWidth: "100%"
       }}>
@@ -49,7 +50,7 @@ export default function LoginPage() {
               }
             })}
           >
-            Welcome!
+            Summit Team
           </h1>
 
           <p
@@ -62,8 +63,7 @@ export default function LoginPage() {
               }
             })}
           >
-            Sign in to access your ticket, view the event schedule, select
-            workshops, and more!
+            Sign in as an organizer to check-in attendees, manage the event, and more. If you're not an organizer or you don't know how you got here, <Link href="/" style={{ color: "var(--red)" }}>click here</Link> to sign in as an attendee.
           </p>
 
           <Build style={{
@@ -132,7 +132,7 @@ export default function LoginPage() {
                   outlineWidth: "2px",
                   minWidth: "0px"
                 })}
-                placeholder="Email"
+                placeholder="Staff Email"
                 type="email"
                 value={email}
                 disabled={loading}
@@ -177,7 +177,7 @@ export const getServerSideProps = async ({req, res}) => {
   if (session.authorized && await session.currentUser()) {
     return {
       redirect: {
-        destination: '/dashboard',
+        destination: '/organizers',
         permanent: false,
       },
     }

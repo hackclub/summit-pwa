@@ -22,7 +22,7 @@ export default function LoginPage() {
     if (loading) return;
     setLoading(true);
 
-    const { authorized, ticketGenerated } = await api.auth.sessions.authorize.post({
+    const { authorized, ticketGenerated, admin } = await api.auth.sessions.authorize.post({
       loginCode
     });
 
@@ -31,6 +31,8 @@ export default function LoginPage() {
       setLoginCode("");
       return alert("🧙‍♀️ What sort of witchcraft is this? That's an invalid login code!");
     }
+
+    if (admin) return router.push("/staff");
 
     if (!ticketGenerated) {
       console.log(await api.attendee.generateTicket.get());

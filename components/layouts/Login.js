@@ -6,7 +6,7 @@ import useBreakpoints from "@/utils/useBreakpoints";
 const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
 const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
 
-export default function Login({ pageName, children, limitedAnimations = false, onFlagClick }) {
+export default function Login({ pageName, children, limitedAnimations = false, onFlagClick, staff }) {
   return (
     <main
       {...$[akaya.className]({
@@ -73,7 +73,7 @@ export default function Login({ pageName, children, limitedAnimations = false, o
               })
               
             })}
-            src="https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"
+            src={staff ? "https://icons.hackclub.com/api/icons/0xffec96/clubs-fill" : "https://cloud-fn8ydpafc-hack-club-bot.vercel.app/0flag-standalone-bw__2__1.svg"}
             onClick={onFlagClick}
           />
           <h1
@@ -86,7 +86,7 @@ export default function Login({ pageName, children, limitedAnimations = false, o
               })
             })}
           >
-            Leaders Summit
+            {staff ? "Summit Organizers" : "Leaders Summit"}
           </h1>
         </div>
       </aside>

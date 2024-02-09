@@ -8,6 +8,10 @@ export default async function handler(req, res) {
     const session = await Session.from(req, res);
     const authorized = await session.loginWithCode(loginCode);
 
+    console.log(session, session.admin);
+
+    if (session.organizer) return res.json({ authorized, admin: true });
+
     const user = await session.currentUser();
 
     return res.json({ authorized, ticketGenerated: user.fields.ticketing_ticketNumber && authorized, ...session });
