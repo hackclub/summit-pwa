@@ -151,7 +151,8 @@ export default function Scan() {
             height: "300px",
             boxSizing: "border-box",
             overflow: "hidden",
-            borderRadius: "24px"
+            borderRadius: "24px",
+            transform: "translateZ(0)"
           }}>
             <div style={{
               width: "100%",
