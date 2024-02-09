@@ -89,7 +89,7 @@ export default function Dashboard({ admin }) {
         flexDirection: 'column',
         gap: '1rem'
       }}>
-        {scans.map(scan => {
+        {scans.reverse().map(scan => {
           const attendee = attendees[scan.ticketNumber];
           const fields = attendee?.fields || {};
           const ticketed = checkedIn.includes(scan.ticketNumber);
@@ -101,20 +101,27 @@ export default function Dashboard({ admin }) {
               flexDirection: 'column'
             }}>
               <div style={{
-                background: 'var(--tan)',
-                color: 'var(--red)',
-                padding: '1rem',
+                background: ticketed ? 'var(--red)' : 'var(--tan)',
+                color: ticketed ? 'var(--tan)' : 'var(--red)',
+                borderBottom: ticketed ? '2px solid var(--tan)' : '2px solid var(--red)',
+                padding: '0.75rem',
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}>
-                <h2 className="mb0 mt0">{fields.first_name + " " + fields.last_name}</h2>
-                <h2 className="space mb0 mt0">{scan.ticketNumber}</h2>
+                <h2 className="mb0 mt0" style={{
+                  fontSize: "30px"
+                }}>{fields.first_name + " " + fields.last_name}</h2>
+                <h2 className="space mb0 mt0" style={{
+                  fontSize: "30px"
+                }}>{scan.ticketNumber}</h2>
               </div>
               <div style={{
                 padding: '1rem',
                 display: 'flex',
                 flexDirection: 'row',
+                gap: '1rem'
               }}>
                 <div style={{
                   display: "grid",
@@ -128,7 +135,7 @@ export default function Dashboard({ admin }) {
                   <h3 className="mt0 mb0">Travel</h3>
                   <h3 className="mt0 mb0">{fields.transportation} from {fields.travelingFrom}</h3>
                   <h3 className="mt0 mb0">Already Checked In?</h3>
-                  <h3 className="mt0 mb0">{!!fields.ticketing_checkedIn}</h3>
+                  <h3 className="mt0 mb0">{!!fields.ticketing_checkedIn + ''}</h3>
                   <h3 className="mt0 mb0">Waiver</h3>
                   <h3 className="mt0 mb0">{fields.ticketing_waiverType ?? "Special"} — {fields.ticketing_waiverStatus}</h3>
                   <h3 className="mt0 mb0">Dietary</h3>
@@ -138,13 +145,14 @@ export default function Dashboard({ admin }) {
                   display: 'flex',
                   flexDirection: 'column',
                   maxWidth: '300px',
+                  gap: '1rem'
                 }}>
                   <h3 style={{
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
                     gap: '1rem'
-                  }} className="h2">
+                  }} className="h2 mb0 mt0">
                     <img style={{ height: "56px" }} src={`https://icons.hackclub.com/api/icons/0xffec96/${ticketed ? "checkmark" : "important"}`} />
                     <span>
                       Status: {ticketed ? "Checked In" : "Scanned"}

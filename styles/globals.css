@@ -78,6 +78,10 @@ button:not(:disabled):hover {
   transform: translateY(-5px);
 }
 
+button:disabled {
+  cursor: default;
+}
+
 button:active {
   transform: scale(0.9);
   filter: none;
