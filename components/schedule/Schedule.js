@@ -106,6 +106,8 @@ const Chunk = ({ time }) => (
 // )
 
 const lengthOfDay = [
+  "5:00 am",
+  "6:00 am",
   "7:00 am",
   "8:00 am",
   "9:00 am",
