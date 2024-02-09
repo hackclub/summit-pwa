@@ -6,15 +6,45 @@ import { useEffect, useState } from "react";
 
 export default function Dashboard({ admin }) {
   const [messages, setMessages] = useState([]);
+  const [attendees, setAttendees] = useState({});
+  const [scans, setScans] = useState([]);
+
+  const checkIn = async ticketNumber => {
+    try {
+      const success = await api.irl.checkIn.post({ ticketNumber });
+      if (!success) throw "Failure: Check-in failed";
+    } catch (err) {
+      console.error(err);
+      return await api.irl.transmit.post({
+        name: 'staff:checkin.failure',
+        data: {
+          ticketNumber: ticketNumber
+        }
+      });
+    }
+
+    await api.irl.transmit.post({
+      name: 'staff:checkin.success',
+      data: {
+        ticketNumber: ticketNumber,
+      }
+    });
+  }
   
   const newMessage = async message => {
     switch (message.name) {
       case "scan:ticket.scan":
-        alert(`🎟️ A ticket was scanned: ${message.data}`);
+        try {
+          const attendee = await api.irl.getAttendee.post({ ticketNumber: message.data.ticketNumber });
+          if (!attendee) throw "Failure: Attendee not found";
 
-        const success = await api.irl.checkIn.post({ ticketNumber: message.data.ticketNumber });
-
-        if (!success) {
+          setAttendees(c => ({ ...c, [message.data.ticketNumber]: attendee }));
+          setScans(c => [...c, {
+            timestamp: message.timestamp,
+            ticketNumber: message.data.ticketNumber
+          }]);
+        } catch (err) {
+          console.error(err);
           return await api.irl.transmit.post({
             name: 'staff:checkin.failure',
             data: {
@@ -23,15 +53,6 @@ export default function Dashboard({ admin }) {
           });
         }
 
-        console.log(success);
-
-        await api.irl.transmit.post({
-          name: 'staff:checkin.success',
-          data: {
-            ticketNumber: message.data.ticketNumber,
-          }
-        });
-        
         break;
     }
   }
@@ -60,9 +81,15 @@ export default function Dashboard({ admin }) {
     <Main pageName="Dashboard" red>
       <h1>Check In Console</h1>
       
+      {scans.map(scan => (
+        <div key={scan.timestamp}>
+          <h2>{scan.ticketNumber}</h2>
+          <button onClick={() => checkIn(scan.ticketNumber)}>Check In</button>
+        </div>
+      ))}
 
       <pre>
-        {JSON.stringify(messages, null, 4)}
+        {JSON.stringify(scans, null, 4)}
       </pre>
     </Main>
   );

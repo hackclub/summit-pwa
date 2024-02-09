@@ -174,7 +174,7 @@ export default function Scan() {
             gap: "1rem",
           }}>
             <h1>Welcome, leader!</h1>
-            <h2 className="mb3">Align your tickets QR code to check in.</h2>
+            <h2 className="mb3">Align your ticket's QR code to check in.</h2>
           </div>
         </div>
       )}
