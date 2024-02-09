@@ -71,7 +71,7 @@ const toSpecialTime = (hhmmap) => {
   result += hours * 60;
   result += minutes;
 
-  result -= 7 * 60; // cal starts at 9 am
+  result -= 5 * 60; // cal starts at 5 am
   result = result / 30; // each "tick" in the calendar is 30 minutes
 
   return result;
