@@ -71,6 +71,11 @@ export default function Login({ pageName, children, limitedAnimations = false, r
             <span {...$({display: ["none", "inline-block"]})}>Photo & Video</span> Album
           </h3>
         </Link> */}
+        <Link href="/dashboard" style={{ textDecoration: 'none'}}>
+          <h3 {...$({color: 'white', textDecoration: 'none'})}>
+            Dashboard
+          </h3>
+        </Link>
         <Link href="/schedule" style={{ textDecoration: 'none'}}>
           <h3 {...$({color: 'white', textDecoration: 'none'})}>
             Schedule

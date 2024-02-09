@@ -74,7 +74,7 @@ button.outlined {
   border: 2px solid var(--red);
 }
 
-button:hover {
+button:not(:disabled):hover {
   transform: translateY(-5px);
 }
 
