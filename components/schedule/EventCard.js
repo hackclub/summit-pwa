@@ -28,38 +28,12 @@ function LightenDarkenColor(col, amt) {
 }
 
 const Block = styled(Box)`
- background-color: ${theme.colors.blue};
+  background-color: ${theme.colors.blue};
   border-radius: ${theme.radius};
   position: absolute;
   left: 4em;
   right: 1em;
-  top: ${(props) => theme.space[5] * (toSpecialTime(props.start) + 0.5)}px;
-  height: ${(props) =>
-    theme.space[5] * (toSpecialTime(props.end) - toSpecialTime(props.start)) -
-    1}px;
-  z-index: 2;
-  ${(props) =>
-    props.flavor == "closing" &&
-    `background-color: ${theme.colors.blue} !important;`}
-  ${(props) =>
-    props.flavor == "food" &&
-    `background-color: ${theme.colors.orange} !important;`}
   
-  ${(props) =>
-    props.onClick === null
-      ? null
-      : css`
-          cursor: pointer;
-          transition-duration: 0.25s;
-          &:hover {
-            // background: ${LightenDarkenColor(theme.colors.blue, -10)};
-            filter: darken(0.5);
-          }
-        `};
-
-  ${Icon} {
-    float: right;
-  }
 `;
 
 const toSpecialTime = (hhmmap) => {
