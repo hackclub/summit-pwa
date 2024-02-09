@@ -35,7 +35,7 @@ export default function Dashboard({ user }) {
       :
         <>
           <h2 className="mb2">To receive your ticket, please sign the waiver emailed to you.</h2>
-          <p className="h3 mb3">Once it's been signed, it may take a bit for your ticket to be generated.</p>
+          <p className="h3 mb3">Once it's been signed, it may take a bit for your ticket to be generated. Can't find the email in your inbox? Please email <a href="mailto:jasper@hackclub.com">jasper@hackclub.com</a>.</p>
           <img src="https://raw.githubusercontent.com/hackclub/dinosaurs/main/dinosaur_sealing_letters_with_wax.png" height="400px" style={{ borderRadius: '16px', maxWidth: '70vw' }} />
         </>
       }
