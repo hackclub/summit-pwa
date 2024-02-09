@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
-import { Akaya_Kanadaka, UnifrakturCook, Space_Mono } from "next/font/google";
 import Session from "@/lib/sessions";
 import api from "@/lib/api";
 import Ticket from "@/components/Ticket";
-const akaya = Akaya_Kanadaka({ weight: "400", subsets: ["latin"] });
-const cook = UnifrakturCook({ weight: "700", subsets: ["latin"] });
-const space = Space_Mono({ weight: "400", subsets: ["latin"] });
 
 function DotDotDot () {
   const [dots, setDots] = useState(1);
@@ -141,7 +137,7 @@ export default function Scan() {
   return (
     <>
       {state == "scan" && (
-        <div className={akaya.className} style={{
+        <div className={"akaya"} style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
@@ -183,7 +179,7 @@ export default function Scan() {
         </div>
       )}
       {state == "transmit" && (
-        <div className={akaya.className} style={{
+        <div className={"akaya"} style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
@@ -215,7 +211,7 @@ export default function Scan() {
         </div>
       )}
       {state == "display" && (
-        <div className={akaya.className} style={{
+        <div className={"akaya"} style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
