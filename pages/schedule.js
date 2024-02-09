@@ -20,7 +20,7 @@ export default function Dashboard({ user }) {
   const waiverStatus = user.fields.ticketing_waiverStatus;
 
   return (
-    <Main pageName="Dashboard" red>
+    <Main pageName="Schedule" red>
       <Schedule />
     </Main>
   );
