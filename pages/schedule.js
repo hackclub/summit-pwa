@@ -17,8 +17,6 @@ export default function Dashboard({ user }) {
   const router = useRouter();
   const dev = useDevMode();
 
-  const waiverStatus = user.fields.ticketing_waiverStatus;
-
   return (
     <Main pageName="Schedule" red>
       <Schedule />
