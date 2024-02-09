@@ -81,6 +81,15 @@ export const getServerSideProps = async ({req, res}) => {
     }
   }
 
+  if (session.organizer) {
+    return {
+      redirect: {
+        destination: '/staff',
+        permanent: false,
+      },
+    }
+  }
+
   const user = await session.currentUser();
   
   if(!user.fields.ticketing_ticketNumber) {
