@@ -179,7 +179,7 @@ export default function Scan() {
               <QrReader
                 onResult={handleScanResult}
                 
-                constraints={{ facingMode: "user" }}
+                constraints={{ facingMode: "environment" }}
               />
             </div>
           </div>
