@@ -206,8 +206,8 @@ export default function Scan() {
             flexGrow: 1,
             gap: "1rem",
           }}>
-            <h1>Saving Ticket</h1>
-            <h2 className="mb3">Please wait<DotDotDot /></h2>
+            <h1>Checking You In<DotDotDot /></h1>
+            <h2 className="mb3">Please wait</h2>
           </div>
         </div>
       )}
@@ -234,6 +234,19 @@ export default function Scan() {
           </div>
         </div>
       )}
+      <div style={{
+        position: "absolute",
+        bottom: "1rem",
+        left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex",
+        flexDirection: "column"
+      }} onClick={() => {
+        location.reload();
+      }}>
+        <p className="cook">Hack Club Leaders Summit</p>
+        <small>Click Here to Reload Ticketing Terminal</small>
+      </div>
     </>
   );
 }
@@ -257,4 +270,5 @@ export const getServerSideProps = async ({req, res}) => {
       user
     }
   }
+
 }
