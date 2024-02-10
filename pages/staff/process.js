@@ -91,14 +91,13 @@ export default function Dashboard({ admin }) {
               <div style={{
                 padding: '1rem',
                 display: 'flex',
-                flexDirection: 'row',
+                flexDirection: 'column',
                 gap: '1rem'
               }}>
                 <div style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
                   gridGap: "10px",
-                  flexGrow: '1',
                   height: "min-content"
                 }}>
                   <h3 className="mt0 mb0">T-Shirt Size</h3>

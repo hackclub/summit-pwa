@@ -69,6 +69,7 @@ export default function Scan() {
     const success = await api.irl.checkIn.post({ ticketNumber: number });
 
     if (success) {
+      await new Promise(r => setTimeout(r, 1500));
       setAttendee(await api.irl.getAttendee.post({ ticketNumber: number }));
       window.checkedIn.push(number);
       setTicketNumber("");
