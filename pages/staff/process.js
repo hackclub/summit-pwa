@@ -9,30 +9,6 @@ export default function Dashboard({ admin }) {
   const [attendees, setAttendees] = useState({});
   const [checkedIn, setCheckedIn] = useState([]);
   const [scans, setScans] = useState([]);
-
-  const checkIn = async ticketNumber => {
-    try {
-      const success = await api.irl.checkIn.post({ ticketNumber });
-      if (!success) throw "Failure: Check-in failed";
-    } catch (err) {
-      console.error(err);
-      return await api.irl.transmit.post({
-        name: 'staff:checkin.failure',
-        data: {
-          ticketNumber: ticketNumber
-        }
-      });
-    }
-
-    await api.irl.transmit.post({
-      name: 'staff:checkin.success',
-      data: {
-        ticketNumber: ticketNumber,
-      }
-    });
-
-    setCheckedIn(c => [...c, ticketNumber]);
-  }
   
   const newMessage = async message => {
     switch (message.name) {
@@ -48,12 +24,7 @@ export default function Dashboard({ admin }) {
           }]);
         } catch (err) {
           console.error(err);
-          return await api.irl.transmit.post({
-            name: 'staff:checkin.failure',
-            data: {
-              ticketNumber: message.data.ticketNumber
-            }
-          });
+          alert("There was an error!");
         }
 
         break;
@@ -159,7 +130,7 @@ export default function Dashboard({ admin }) {
                     </span>
                   </h3>
                   {/* <pre>{JSON.stringify(attendees[scan.ticketNumber], null, 4)}</pre> */}
-                  <button disabled={ticketed} aria-disabled={ticketed} onClick={() => checkIn(scan.ticketNumber)}>{ticketed ? "Checked In" : "Check In"}</button>
+                  <button disabled aria-disabled onClick={() => checkIn(scan.ticketNumber)}>{ticketed ? "Checked In" : "Check In"}</button>
                 </div>
               </div>
             </div>

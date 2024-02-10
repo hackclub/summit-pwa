@@ -7,7 +7,7 @@ export default async function handler (req, res) {
     if (!session.organizer) return res.json({ authorized: false });
     const organizer = await session.currentAuthorizedUser();
 
-    const result = await kv.lpush(`events.${organizer.id}`, {
+    const result = await kv.lpush(`events.irl`, {
         version: 5,
         name: req.body.name,
         data: req.body.data,

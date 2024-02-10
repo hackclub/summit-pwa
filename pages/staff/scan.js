@@ -63,22 +63,36 @@ export default function Scan() {
   const [currentState, setCurrentState] = useState(0);
   const state = states[currentState % states.length];
 
-  const next = () => setCurrentState(currentState + 1);
+  const next = () => setCurrentState(c => c + 1);
+
+  const doCheckIn = async number => {
+    const success = await api.irl.checkIn.post({ ticketNumber: number });
+
+    if (success) {
+      setAttendee(await api.irl.getAttendee.post({ ticketNumber: number }));
+      window.checkedIn.push(number);
+      setTicketNumber("");
+      setData("");
+      next();
+    } else {
+      alert("There was an error! Please ask a staff member for support.");
+    }
+  }
 
   useEffect(() => {
     window.newMessage = async message => {
       switch (message.name) {
-        case "staff:checkin.success":
-          console.log(ticketNumber, message.data, state);
-          if (ticketNumber == message.data.ticketNumber && state == "transmit") {
-            setAttendee(await api.irl.getAttendee.post({ ticketNumber }));
-            window.checkedIn.push(ticketNumber);
-            setTicketNumber("");
-            setData("");
-            next();
-          }
+        // case "staff:checkin.success":
+        //   console.log(ticketNumber, message.data, state);
+        //   if (ticketNumber == message.data.ticketNumber && state == "transmit") {
+        //     setAttendee(await api.irl.getAttendee.post({ ticketNumber }));
+        //     window.checkedIn.push(ticketNumber);
+        //     setTicketNumber("");
+        //     setData("");
+        //     next();
+        //   }
           
-          break;
+        //   break;
       }
     }
   }, [ticketNumber, state]);
@@ -117,12 +131,14 @@ export default function Scan() {
         setTicketNumber(number);
         next();
         setAttendee(null);
-        api.irl.transmit.post({
-          name: 'scan:ticket.scan',
-          data: {
-            ticketNumber: number
-          }
-        }).then(console.log);
+        doCheckIn(number).then(() => {;
+          api.irl.transmit.post({
+            name: 'scan:ticket.scan',
+            data: {
+              ticketNumber: number
+            }
+          }).then(console.log);
+        });
       }
     } catch (e) {}
   }, [data, state]);
